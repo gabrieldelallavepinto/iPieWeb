@@ -15,6 +15,10 @@ use App\Http\Resources\UserResource;
 */
 
 Route::group(['middleware' => 'auth:api'], function() {
+  
+    Route::post('register', 'Auth\RegisterController@register');
+    Route::post('logout', 'Auth\LoginController@logout');
+
     Route::get('users','UserController@index');
     Route::get('users/{id}', 'UserController@show');
     Route::post('users', 'UserController@store');
@@ -45,8 +49,13 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('citas/{id}', 'CitaController@update');
     Route::delete('citas/{id}', 'CitaController@delete');
 
-    Route::post('register', 'Auth\RegisterController@register');
-    Route::post('logout', 'Auth\LoginController@logout');
+    Route::get('notas','NotaController@index');
+    Route::get('notas/{id}', 'NotaController@show');
+    Route::post('notas', 'NotaController@store');
+    Route::post('notas/{id}', 'NotaController@update');
+    Route::delete('notas/{id}', 'NotaController@delete');
+
+
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
