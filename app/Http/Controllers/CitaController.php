@@ -35,4 +35,8 @@ class CitaController extends Controller
     $article->delete();
     return 204;
   }
+
+  public function showByDate($date){
+    return Cita::whereDate('fecha', $date)->get();
+  }
 }

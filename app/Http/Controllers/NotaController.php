@@ -35,4 +35,8 @@ class NotaController extends Controller
     $article->delete();
     return 204;
   }
+
+  public function showByDate($date){
+    return Nota::whereDate('fecha', $date)->get();
+  }
 }
