@@ -51,7 +51,7 @@ class LoginController extends Controller
           return $user;
       }
 
-      return $this->sendFailedLoginResponse($request);
+      return response()->json(['data' => 'Error en al loguear, Usuario o Contraseña incorrectos'], 200);
     }
 
     public function logout(Request $request)
