@@ -76,8 +76,9 @@
                     @endauth
                 </div>
             @endif
-
             <div class="content">
+                @yield('content')
+
                 <div class="title m-b-md">
                     Laravel
                 </div>
@@ -91,5 +92,9 @@
                 </div>
             </div>
         </div>
+        
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        @yield('script')
     </body>
 </html>
