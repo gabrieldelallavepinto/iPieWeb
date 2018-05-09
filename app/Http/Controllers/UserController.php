@@ -30,6 +30,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
       $user = User::find($id);
+      $request['password'] =  Hash::make($request['password']);
       $user->update($request->all());
       return $user;
     }
@@ -40,4 +41,9 @@ class UserController extends Controller
       $article->delete();
       return 204;
     }
+
+    public function formUser(){
+      return view('admin.formUser');
+    }
+
 }

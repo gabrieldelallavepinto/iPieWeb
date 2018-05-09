@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 use App\User;
 use App\Http\Resources\UserResource;
 
@@ -14,5 +15,9 @@ use App\Http\Resources\UserResource;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
+
+Route :: get ('/admin/formUser', 'UserController@formUser');
+Route::get('/login','Auth\LoginController@showLogin');
+Route::post('/log','Auth\LoginController@log');
