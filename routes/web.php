@@ -1,4 +1,6 @@
 <?php
+use App\User;
+use App\Http\Resources\UserResource;
 
 /*
 |--------------------------------------------------------------------------
