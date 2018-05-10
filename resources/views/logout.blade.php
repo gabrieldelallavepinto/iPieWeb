@@ -1,5 +1,5 @@
 <div class="container">
-  <form action="{{ action('Auth\LoginController@log') }}" method="post">
+  <form action="{{ action('Auth\LoginController@logout') }}" method="post">
     {{ csrf_field() }}
     <label for="email">E-mail: </label><br>
     <input type="email" name="email" value=""><br>

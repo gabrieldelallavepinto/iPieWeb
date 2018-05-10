@@ -3,6 +3,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Resources\UserResource;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +16,7 @@ use App\Http\Resources\UserResource;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('logout');
 });
 
 Route :: get ('/admin/formUser', 'UserController@formUser');

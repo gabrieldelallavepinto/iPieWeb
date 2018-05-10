@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Auth;
+use Session;
 
 class LoginController extends Controller
 {
@@ -60,7 +61,6 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $user = Auth::guard('api')->user();
-
         if ($user) {
             $user->api_token = null;
             $user->save();
@@ -80,8 +80,8 @@ class LoginController extends Controller
 
       if ($this->attemptLogin($request)) {
           $user = $this->guard()->user();
-          $user->generateToken();
-          return view('admin.formUser');
+          Session::put('api_token',$user->generateToken());
+          return view('admin.formUser')->with('api_token',Session::get('api_token'));
       }
 
       return view('login');
