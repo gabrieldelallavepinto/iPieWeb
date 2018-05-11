@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Auth;
+use Session;
 
 class UserController extends Controller
 {
@@ -43,7 +45,36 @@ class UserController extends Controller
     }
 
     public function formUser(){
-      return view('admin.formUser');
+      return view('admin.formUser', ['api_token' => Session::get('api_token')]);
     }
+    public function formUserId($id)
+    {
+      return view('admin.formUser', ['api_token' => Session::get('api_token'), 'user' => $this->show($id)]);
+    }
+
+    public function showUser($id)
+    {
+      return view('admin.showUser',['user' => $this->show($id)]);
+    }
+
+    public function saveUser(Request $request)
+    {
+
+      if ($request['id'] != "") {
+          $user = $this->update($request,$request['id']);
+      }
+      else {
+          $user = $this->store($request);
+      }
+      return redirect('/admin/showUser/'.$user->id);
+    }
+
+    public function users()
+    {
+      $users = $this->index();
+      return view('admin.listUsers',['users' => $users]);
+    }
+
+
 
 }

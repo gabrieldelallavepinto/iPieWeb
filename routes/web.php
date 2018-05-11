@@ -19,6 +19,11 @@ Route::get('/', function () {
     return view('logout');
 });
 
-Route :: get ('/admin/formUser', 'UserController@formUser');
+Route::get ('/admin/formUser/{id}', 'UserController@formUserId');
+Route::get ('/admin/formUser', 'UserController@formUser');
+Route::post('/admin/saveUser', 'UserController@saveUser');
+Route::get('/admin/showUser/{id}', 'UserController@showUser');
+Route::get ('/admin/users', 'UserController@users');
+
 Route::get('/login','Auth\LoginController@showLogin');
 Route::post('/log','Auth\LoginController@log');
