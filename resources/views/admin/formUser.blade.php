@@ -1,4 +1,3 @@
-@extends('welcome')
 
 <div class="container">
   <h3>Usuario</h3>
@@ -12,7 +11,7 @@
     <input type="password" name="password" value="<?php if(isset($user)) echo $user->password;?>"><br>
     <input type="hidden" name="id" value="<?php if(isset($user)) echo $user->id;?>">
 
-    <input type="submit"  value="Crear">
+    <input type="submit"  value="Guardar">
   </form>
   <a href="{{url('/admin/users')}}">Lista de Usuarios</a>
 </div>

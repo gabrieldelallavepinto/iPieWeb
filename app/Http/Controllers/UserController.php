@@ -75,6 +75,13 @@ class UserController extends Controller
       return view('admin.listUsers',['users' => $users]);
     }
 
+    public function deleteUser($id)
+    {
+      $article = User::find($id);
+      $article->delete();
+      return redirect('/admin/users');
+    }
+
 
 
 }

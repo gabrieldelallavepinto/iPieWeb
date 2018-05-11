@@ -24,6 +24,14 @@ Route::get ('/admin/formUser', 'UserController@formUser');
 Route::post('/admin/saveUser', 'UserController@saveUser');
 Route::get('/admin/showUser/{id}', 'UserController@showUser');
 Route::get ('/admin/users', 'UserController@users');
+Route::get('/admin/deleteUser/{id}', 'UserController@deleteUser');
+
+Route::get ('/admin/formClinica/{id}', 'ClinicaController@formClinicaId');
+Route::get ('/admin/formClinica', 'ClinicaController@formClinica');
+Route::post('/admin/saveClinica', 'ClinicaController@saveClinica');
+Route::get('/admin/showClinica/{id}', 'ClinicaController@showClinica');
+Route::get ('/admin/clinicas', 'ClinicaController@clinicas');
+Route::get('/admin/deleteClinica/{id}', 'ClinicaController@deleteClinica');
 
 Route::get('/login','Auth\LoginController@showLogin');
 Route::post('/log','Auth\LoginController@log');
