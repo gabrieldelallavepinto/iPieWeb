@@ -18,6 +18,7 @@ class CreateCitasTable extends Migration
             $table->integer('idCliente')->unsigned();
             $table->integer('idTipo')->unsigned();
             $table->integer('idClinica')->unsigned();
+            $table->integer('idUsuario')->unsigned();
             $table->dateTime('fecha');
             $table->timestamps();
         });
@@ -26,6 +27,7 @@ class CreateCitasTable extends Migration
             $table->foreign('idCliente')->references('id')->on('clientes');
             $table->foreign('idTipo')->references('id')->on('tipo_citas');
             $table->foreign('idClinica')->references('id')->on('clinicas');
+            $table->foreign('idUsuario')->references('id')->on('users');
         });
     }
 

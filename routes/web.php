@@ -42,3 +42,7 @@ Route::get('/deleteNota/{id}', 'NotaController@deleteNota');
 
 Route::get('/login','Auth\LoginController@showLogin');
 Route::post('/log','Auth\LoginController@log');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
