@@ -78,8 +78,9 @@
                     @endauth
                 </div>
             @endif
+            @yield('content')
+
             <div class="content">
-                @yield('content')
 
                 <div class="title m-b-md">
                     Laravel

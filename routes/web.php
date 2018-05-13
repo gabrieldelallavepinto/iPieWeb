@@ -15,6 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/calendar', function () {
+Route::get('/calendario', function () {
     return view('calendar.index');
 });
