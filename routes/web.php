@@ -33,5 +33,12 @@ Route::get('/admin/showClinica/{id}', 'ClinicaController@showClinica');
 Route::get ('/admin/clinicas', 'ClinicaController@clinicas');
 Route::get('/admin/deleteClinica/{id}', 'ClinicaController@deleteClinica');
 
+Route::get ('/formNota/{id}', 'NotaController@formNotaId');
+Route::get ('/formNota', 'NotaController@formNota');
+Route::post('/saveNota', 'NotaController@saveNota');
+Route::get('/showNota/{id}', 'NotaController@showNota');
+Route::get ('/notas/{date}', 'NotaController@notas');
+Route::get('/deleteNota/{id}', 'NotaController@deleteNota');
+
 Route::get('/login','Auth\LoginController@showLogin');
 Route::post('/log','Auth\LoginController@log');

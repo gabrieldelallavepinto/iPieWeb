@@ -82,6 +82,8 @@ class LoginController extends Controller
       if ($this->attemptLogin($request)) {
           $user = $this->guard()->user();
           Session::put('api_token',$user->generateToken());
+          Session::put('userid',$user->id);
+          Session::put('username',$user->name);
           return view('admin.formUser')->with('api_token',Session::get('api_token'));
       }
 
