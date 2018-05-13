@@ -1,5 +1,7 @@
 {{-- Panel de administración --}}
 
+<link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet">
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a class="navbar-brand" href="index.html">iPie</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +12,7 @@
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="/">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Principal</span>
           </a>
@@ -24,7 +26,7 @@
         </li>
         
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="news">
+          <a class="nav-link" href="noticias">
             <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">Tablón de noticias</span>
           </a>
@@ -69,7 +71,7 @@
             </span>
           </a>
           <div class="dropdown-menu dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-            <h6 class="dropdown-header">Nuevos mensajes</h6>
+            <h6 class="dropdown-header">Nuevas noticias</h6>
             <div class="dropdown-divider"></div>
 
             <a class="dropdown-item" href="#">
