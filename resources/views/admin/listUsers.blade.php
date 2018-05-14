@@ -1,4 +1,5 @@
-
+@extends('principal')
+@section('content')
 
 <div class="container">
   @foreach($users as $user)
@@ -9,3 +10,4 @@
   @endforeach
   <a href="{{url('/admin/formUser')}}">Añadir Usuario</a>
 </div>
+@stop

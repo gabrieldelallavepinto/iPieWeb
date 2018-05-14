@@ -1,4 +1,5 @@
-
+@extends('principal')
+@section('content')
 <div class="container">
   <h3>Usuario</h3>
   <form action="{{ action('UserController@saveUser') }}" method="post">
@@ -15,3 +16,4 @@
   </form>
   <a href="{{url('/admin/users')}}">Lista de Usuarios</a>
 </div>
+@stop

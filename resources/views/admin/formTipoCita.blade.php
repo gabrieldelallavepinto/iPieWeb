@@ -1,6 +1,7 @@
-
+@extends('principal')
+@section('content')
 <div class="container">
-  
+
   <form action="{{ action('TipoCitaController@saveTipoCita') }}" method="post">
     {{ csrf_field() }}
     <label for="nombre">Tipo de cita : </label>
@@ -15,3 +16,4 @@
   </form>
   <a href="{{url('/admin/tipocitas')}}">Lista de tipos de citas</a>
 </div>
+@stop

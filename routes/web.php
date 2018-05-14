@@ -48,6 +48,13 @@ Route::get('/showNota/{id}', 'NotaController@showNota');
 Route::get ('/notas/{date}', 'NotaController@notas');
 Route::get('/deleteNota/{id}', 'NotaController@deleteNota');
 
+Route::get ('/formCita/{id}', 'CitaController@formCitaId');
+Route::get ('/formCita', 'CitaController@formCita');
+Route::post('/saveCita', 'CitaController@saveCita');
+Route::get('/showCita/{id}', 'CitaController@showCita');
+Route::get ('/citas/{date}', 'CitaController@citas');
+Route::get('/deleteCita/{id}', 'CitaController@deleteCita');
+
 Route::get ('/admin/formTipoCita/{id}', 'TipoCitaController@formTipoCitaId');
 Route::get ('/admin/formTipoCita', 'TipoCitaController@formTipoCita');
 Route::post('/admin/saveTipoCita', 'TipoCitaController@saveTipoCita');

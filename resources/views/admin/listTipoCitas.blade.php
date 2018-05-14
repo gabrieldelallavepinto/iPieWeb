@@ -1,4 +1,5 @@
-
+@extends('principal')
+@section('content')
 
 <div class="container">
   @foreach($tipocitas as $tipocita)
@@ -9,3 +10,4 @@
   @endforeach
   <a href="{{url('/admin/formTipoCita')}}">Añadir tipo de cita</a>
 </div>
+@stop

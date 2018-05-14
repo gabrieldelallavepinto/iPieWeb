@@ -1,4 +1,5 @@
-
+@extends('principal')
+@section('content')
 
 <div class="container">
   @foreach($clinicas as $clinica)
@@ -9,3 +10,4 @@
   @endforeach
   <a href="{{url('/admin/formClinica')}}">Añadir Clinica</a>
 </div>
+@stop

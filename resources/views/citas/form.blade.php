@@ -5,7 +5,7 @@
     <div class="card mx-auto">
         <div class="card-header">Citas</div>
         <div class="card-body">
-            <form action="{{ action('CitaController@store') }}" method="post">
+            <form action="{{ action('CitaController@saveCita') }}" method="post">
                 {{ csrf_field() }}
 
                 <div class="row">
@@ -53,9 +53,9 @@
                     <textarea class="form-control" rows="4" id="notas" name="notas" type="text" placeholder="Escribe las notas que necesites"></textarea>
                 </div>
 
-                <div class="col-md-12"><button type="submit" class="btn btn-primary">Submit</button></div>
-                
-                
+                <div class="col-md-12"><button type="submit" class="btn btn-primary">Guardar</button></div>
+
+
             </form>
         </div>
         </div>
