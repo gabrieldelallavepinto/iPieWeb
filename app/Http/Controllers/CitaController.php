@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cita;
+use App\TipoCita;
 
 class CitaController extends Controller
 {
   public function index()
   {
     return Cita::all();
+  }
+
+  public function create()
+  {
+    $tiposCita = TipoCita::select('id','nombre','color')->get();
+    return view('citas.form', ['tiposCita' => $tiposCita]);
   }
 
   public function show($id)

@@ -19,6 +19,14 @@ Route::get('/', function () {
     return view('logout');
 });
 
+Route::get('/calendario', function () {
+    return view('calendar.index');
+});
+
+//citas
+Route::get('/citas/create', 'CitaController@create');
+
+
 Route::get ('/admin/formUser/{id}', 'UserController@formUserId');
 Route::get ('/admin/formUser', 'UserController@formUser');
 Route::post('/admin/saveUser', 'UserController@saveUser');
