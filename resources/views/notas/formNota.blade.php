@@ -6,7 +6,7 @@
     <textarea name="descripcion" rows="8" cols="80"><?php if(isset($nota)) echo $nota->descripcion;?></textarea><br><br>
     <label for="fecha">Fecha: </label>
     <input type="date" name="fecha" value="<?php if(isset($nota)) echo $nota->fecha;?>"><br>
-    <input type="hidden" name="idUsuario" value="<?php if(Session::get('userid') != null) echo Session::get('userid');?>"><br>
+    <input type="hidden" name="idUsuario" value="<?= Auth::user()->id; ?>"><br>
     <input type="hidden" name="id" value="<?php if(isset($nota)) echo $nota->id;?>">
     <input type="submit"  value="Guardar">
   </form>
