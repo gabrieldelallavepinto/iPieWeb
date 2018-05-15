@@ -25,6 +25,7 @@ Route::get('/calendario', function () {
 
 //citas
 Route::get('/citas/create', 'CitaController@create');
+Route::get('/citas/edit', 'CitaController@edit');
 
 
 Route::get ('/admin/formUser/{id}', 'UserController@formUserId');
