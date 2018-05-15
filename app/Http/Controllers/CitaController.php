@@ -14,6 +14,7 @@ class CitaController extends Controller
     return Cita::all();
   }
 
+
   public function create()
   {
     $tiposCita = TipoCita::select('id','nombre','color')->get();
@@ -22,23 +23,30 @@ class CitaController extends Controller
     return view('citas.create', ['cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita]);
   }
 
-  public function edit()
+  public function edit(Request $request)
   {
+    $id = $request['id'];
+    
     $tiposCita = TipoCita::select('id','nombre','color')->get();
-    $cita = Cita::find(1);
+    $cita = Cita::find($id);
     $cliente = Cliente::find($cita->idCliente);
     return view('citas.create', ['cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita]);
   }
+
+
+  public function store(Request $request)
+  {
+    
+    return Cita::create($request->all());
+  }
+
 
   public function show($id)
   {
     return Cita::find($id);
   }
 
-  public function store(Request $request)
-  {
-    return Cita::create($request->all());
-  }
+
 
   public function update(Request $request, $id)
   {
