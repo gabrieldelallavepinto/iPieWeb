@@ -53,7 +53,7 @@ class LoginController extends Controller
         return response()->json(['data' => 'User logged out.'], 200);
     }
 
-    public function logapi(Request $request)
+    public function loginapi(Request $request)
     {
       $this->validateLogin($request);
 

@@ -65,5 +65,5 @@ Route::group(['middleware' => 'auth:api'], function() {
 
 });
 
-Route::post('login', 'Auth\LoginController@loginapi');
-Route::post('logout', 'Auth\LoginController@logoutapi');
+Route::post('/login', 'Auth\LoginController@loginapi');
+Route::post('/logout', 'Auth\LoginController@logoutapi');
