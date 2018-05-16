@@ -43,8 +43,8 @@ class CitaController extends Controller
     return 204;
   }
 
-  public function showByDate($date){
-    return Cita::whereDate('fecha', $date)->get();
+  public function showByDate($clinica, $date){
+    return Cita::whereDate('fecha', $date)->where('idClinica','=',$clinica)->get();
   }
 
   public function formCita(){
@@ -64,7 +64,7 @@ class CitaController extends Controller
 
   public function saveCita(Request $request)
   {
-    $cliente = []
+    $cliente = [];
     $cita = [
               "id" => $request['id'],
               "idCliente" => $request['id'],
@@ -72,7 +72,7 @@ class CitaController extends Controller
               "idClinica" => $request['idClinica'],
               "fecha" => $request['fecha'],
               "notas" => $request['notas']
-            ]
+            ];
 
     if ($request['id'] != "") {
         $nota = $this->update($request,$request['id']);

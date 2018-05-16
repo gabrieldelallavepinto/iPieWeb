@@ -38,8 +38,8 @@ class NotaController extends Controller
     return 204;
   }
 
-  public function showByDate($date){
-    return Nota::whereDate('fecha', $date)->get();
+  public function showByDate($id, $date){
+    return Nota::whereDate('fecha', $date)->where('idClinica','=',$id)->get();
   }
 
   public function formNota(){
