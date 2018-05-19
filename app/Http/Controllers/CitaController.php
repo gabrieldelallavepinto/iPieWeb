@@ -43,8 +43,16 @@ class CitaController extends Controller
     return 204;
   }
 
-  public function showByDate($clinica, $date){
+  public function showByDateClinica($clinica, $date){
     return Cita::whereDate('fecha', $date)->where('idClinica','=',$clinica)->get();
+  }
+
+  public function showByDatePodologo($podologo, $date){
+    return Cita::whereDate('fecha', $date)->where('idPodologo','=',$podologo)->get();
+  }
+
+  public function showByDatePodologoClinica($podologo, $clinica, $date){
+    return Cita::whereDate('fecha', $date)->where('idClinica','=',$clinica)->where('idPodologo','=', $podologo)->get();
   }
 
   public function formCita(){

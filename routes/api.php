@@ -50,7 +50,9 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::get('citas','CitaController@index');
     Route::get('citas/{id}', 'CitaController@show');
-    Route::get('citas/date/{id}/{date}', 'CitaController@showByDate');
+    Route::get('citas/clinica/{id}/{date}', 'CitaController@showByDateClinica');
+    Route::get('citas/podologo/{id}/{date}', 'CitaController@showByDatePodologo');
+    Route::get('citas/{podologo}/{id}/{date}', 'CitaController@showByDatePodologoClinica');
     Route::post('citas', 'CitaController@store');
     Route::post('citas/{id}', 'CitaController@update');
     Route::delete('citas/{id}', 'CitaController@delete');
