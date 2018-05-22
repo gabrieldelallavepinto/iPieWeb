@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddsTipoToUsersTable extends Migration
+class CreateTipoUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class AddsTipoToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-          $table->integer('tipo')->unsigned();
-          $table->foreign('tipo')->references('id')->on('tipo_usuarios');
-        });
+      Schema::create('tipo_usuarios', function (Blueprint $table) {
+          $table->increments('id');
+          $table->text('name');
+          $table->timestamps();
+      });
     }
 
     /**
@@ -26,8 +27,7 @@ class AddsTipoToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-              $table->dropColumn(['tipo']);
-        });
+        Schema::dropIfExists('tipo_usuarios');
     }
+
 }
