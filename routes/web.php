@@ -49,5 +49,21 @@ Route::get('/showNota/{id}', 'NotaController@showNota');
 Route::get ('/notas/{date}', 'NotaController@notas');
 Route::get('/deleteNota/{id}', 'NotaController@deleteNota');
 
-Route::get('/login','Auth\LoginController@showLogin');
-Route::post('/log','Auth\LoginController@log');
+Route::get ('/formCita/{id}', 'CitaController@formCitaId');
+Route::get ('/formCita', 'CitaController@formCita');
+Route::post('/saveCita', 'CitaController@saveCita');
+Route::get('/showCita/{id}', 'CitaController@showCita');
+Route::get ('/citas/{date}', 'CitaController@citas');
+Route::get('/deleteCita/{id}', 'CitaController@deleteCita');
+
+Route::get ('/admin/formTipoCita/{id}', 'TipoCitaController@formTipoCitaId');
+Route::get ('/admin/formTipoCita', 'TipoCitaController@formTipoCita');
+Route::post('/admin/saveTipoCita', 'TipoCitaController@saveTipoCita');
+Route::get('/admin/showTipoCita/{id}', 'TipoCitaController@showTipoCita');
+Route::get ('/admin/tipocitas', 'TipoCitaController@tipocitas');
+Route::get('/admin/deleteTipoCita/{id}', 'TipoCitaController@deleteTipoCita');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
