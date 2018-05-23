@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\TipoUsuario;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -54,6 +55,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|max:255',
             'password' => 'required|string|min:6',
+            'tipo' => 'required'
         ]);
     }
 
@@ -65,13 +67,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'tipo' => $data['tipo']
         ]);
+        $user->generateToken();
+        return $user
     }
-    protected function registered(Request $request, $user)
+    protected function registeredapi(Request $request, $user)
     {
       $user->generateToken();
       return $user;
@@ -84,14 +89,11 @@ class RegisterController extends Controller
       return $this->registered($request, $user);
     }
 
-    public function register($value='')
-    {
 
-    }
 
     public function showRegistrationForm($value='')
     {
-      // code...
+      return view('auth.register', ['tipoUsuarios' => TipoUsuario::all()]);
     }
 
 

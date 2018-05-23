@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Auth;
 use Session;
+use App\TipoUsuario;
 
 class LoginController extends Controller
 {

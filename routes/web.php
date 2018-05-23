@@ -14,9 +14,13 @@ use App\Http\Resources\UserResource;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware('auth:web')->get('/user',function(Request $request)
+{
+  
+})
 
 Route::get('/', function () {
-    return view('logout');
+    return view('calendar.index');
 });
 
 Route::get('/calendario', function () {

@@ -52,7 +52,7 @@
 
         <div class="col-md-12"><button type="submit" class="btn btn-primary">Guardar</button></div>
     </div>
-    
+
 </form>
 
 @section('script')
