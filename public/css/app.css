@@ -13055,3 +13055,38 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.fc-day-grid-container {
+  cursor: pointer;
+}
+
+.fc-day-top {
+  text-align: center !important;
+}
+
+.fc-day-number {
+  float: none !important;
+}
+
+.fc td,
+.fc th {
+  border-width: 0px !important;
+}
+
+.cita {
+  padding: 1.25rem;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: .25rem;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.cita .color {
+  height: 100%;
+  min-height: 50px;
+  width: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: .25rem;
+}
+

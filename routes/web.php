@@ -23,9 +23,16 @@ Route::get('/calendario', function () {
     return view('calendar.index');
 });
 
+
+//calendario
+Route::get('/calendario', 'CalendarioController@index');
+Route::get('/calendario/{fecha}', 'CalendarioController@index');
+
+
 //citas
-Route::get('/citas/create', 'CitaController@create');
-Route::get('/citas/edit', 'CitaController@edit');
+Route::get('/cita/create', 'CitaController@create');
+Route::get('/cita/edit/{id}', 'CitaController@edit');
+Route::post('/cita', 'CitaController@store');
 
 
 Route::get ('/admin/formUser/{id}', 'UserController@formUserId');
@@ -51,3 +58,4 @@ Route::get('/deleteNota/{id}', 'NotaController@deleteNota');
 
 Route::get('/login','Auth\LoginController@showLogin');
 Route::post('/log','Auth\LoginController@log');
+
