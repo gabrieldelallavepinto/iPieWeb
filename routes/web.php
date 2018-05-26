@@ -30,9 +30,11 @@ Route::get('/calendario/{fecha}', 'CalendarioController@index');
 
 
 //citas
-Route::get('/cita/create', 'CitaController@create');
-Route::get('/cita/edit/{id}', 'CitaController@edit');
+Route::get('/cita/create', 'CitaController@create')->name('cita.create');
+Route::get('/cita/edit', 'CitaController@edit')->name('cita.edit');
 Route::post('/cita', 'CitaController@store');
+
+
 
 
 Route::get ('/admin/formUser/{id}', 'UserController@formUserId');
