@@ -57,12 +57,12 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('citas/{id}', 'CitaController@update');
     Route::delete('citas/{id}', 'CitaController@delete');
 
-    Route::get('notas','NotaController@index');
-    Route::get('notas/{id}', 'NotaController@show');
-    Route::get('notas/date/{id}/{date}', 'NotaController@showByDate');
-    Route::post('notas', 'NotaController@store');
-    Route::post('notas/{id}', 'NotaController@update');
-    Route::delete('notas/{id}', 'NotaController@delete');
+    Route::get('anuncios','AnuncioController@index');
+    Route::get('anuncios/{id}', 'AnuncioController@show');
+    Route::get('anuncios/date/{date}', 'AnuncioController@showByDate');
+    Route::post('anuncios', 'AnuncioController@store');
+    Route::post('anuncios/{id}', 'AnuncioController@update');
+    Route::delete('anuncios/{id}', 'AnuncioController@delete');
 
 
 });
