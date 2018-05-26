@@ -58,6 +58,10 @@ Route::get('/showNota/{id}', 'NotaController@showNota');
 Route::get ('/notas/{date}', 'NotaController@notas');
 Route::get('/deleteNota/{id}', 'NotaController@deleteNota');
 
-Route::get('/login','Auth\LoginController@showLogin');
-Route::post('/log','Auth\LoginController@log');
+Route::get ('/formCita/{id}', 'CitaController@formCitaId');
+Route::get ('/formCita', 'CitaController@formCita');
+Route::post('/saveCita', 'CitaController@saveCita');
+Route::get('/showCita/{id}', 'CitaController@showCita');
+Route::get ('/citas/{date}', 'CitaController@citas');
+Route::get('/deleteCita/{id}', 'CitaController@deleteCita');
 

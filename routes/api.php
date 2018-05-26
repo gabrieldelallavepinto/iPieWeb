@@ -50,20 +50,22 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::get('citas','CitaController@index');
     Route::get('citas/{id}', 'CitaController@show');
-    Route::get('citas/date/{date}', 'CitaController@showByDate');
+    Route::get('citas/clinica/{id}/{date}', 'CitaController@showByDateClinica');
+    Route::get('citas/podologo/{id}/{date}', 'CitaController@showByDatePodologo');
+    Route::get('citas/{podologo}/{id}/{date}', 'CitaController@showByDatePodologoClinica');
     Route::post('citas', 'CitaController@store');
     Route::post('citas/{id}', 'CitaController@update');
     Route::delete('citas/{id}', 'CitaController@delete');
 
-    Route::get('notas','NotaController@index');
-    Route::get('notas/{id}', 'NotaController@show');
-    Route::get('notas/date/{id}', 'NotaController@showByDate');
-    Route::post('notas', 'NotaController@store');
-    Route::post('notas/{id}', 'NotaController@update');
-    Route::delete('notas/{id}', 'NotaController@delete');
+    Route::get('anuncios','AnuncioController@index');
+    Route::get('anuncios/{id}', 'AnuncioController@show');
+    Route::get('anuncios/date/{date}', 'AnuncioController@showByDate');
+    Route::post('anuncios', 'AnuncioController@store');
+    Route::post('anuncios/{id}', 'AnuncioController@update');
+    Route::delete('anuncios/{id}', 'AnuncioController@delete');
 
 
 });
 
-Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout');
+Route::post('/login', 'Auth\LoginController@loginapi');
+Route::post('/logout', 'Auth\LoginController@logoutapi');

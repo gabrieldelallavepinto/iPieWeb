@@ -13,15 +13,18 @@ class CreateNotasTable extends Migration
      */
     public function up()
     {
-      Schema::create('notas', function (Blueprint $table) {
+      Schema::create('anuncios', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('idUsuario')->unsigned();
+          $table->string('titulo');
           $table->text('descripcion');
           $table->dateTime('fecha');
+          $table->string('imagen');
+          $table->string('pdf');
           $table->timestamps();
       });
 
-      Schema::table('notas', function (Blueprint $table) {
+      Schema::table('anuncios', function (Blueprint $table) {
         $table->foreign('idUsuario')->references('id')->on('users');
       });
     }
@@ -36,4 +39,3 @@ class CreateNotasTable extends Migration
         Schema::dropIfExists('notas');
     }
 }
-  
