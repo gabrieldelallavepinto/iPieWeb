@@ -13,3 +13,8 @@ let mix = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
+//    .copy('node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css', 'public/datePicker/css')
+//    .copy('node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.css', 'public/datePicker/css')
+//    .copy('node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js', 'public/datePicker/js')
+//    .copy('node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js', 'public/datePicker/locales');
+   
