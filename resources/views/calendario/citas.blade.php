@@ -9,7 +9,7 @@
         </div>
     </div>
 
-        @foreach($citas as $cita)
+    @foreach($citas as $cita)
         <div id="{{ $cita['id'] }}" class="row align-items-center cita">
             {{-- color tipo cita --}}
             <div class="col-md-1"><div class="color" style="background-color:{{ $cita['tipo']['color'] }};"></div></div>
@@ -28,7 +28,7 @@
                 <div class="col-md-12">{{ $cita['paciente']['tlfnMovil'] }}</div>
             </div>
         </div>
-        @endforeach
+    @endforeach
         
     </div>
 

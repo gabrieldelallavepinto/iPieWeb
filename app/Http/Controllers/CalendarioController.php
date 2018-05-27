@@ -33,6 +33,7 @@ class CalendarioController extends Controller
             $citas[$key]['tipo'] = TipoCita::find($cita->idTipo);
             $citas[$key]['paciente'] = Cliente::find($cita->idCliente);
         }
+
         return view('calendario.index', ['citas' => $citas,'fecha' => $fecha,]);
     }
 
