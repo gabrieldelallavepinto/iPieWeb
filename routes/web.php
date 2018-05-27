@@ -34,6 +34,12 @@ Route::get('/cita/edit', 'CitaController@edit')->name('cita.edit');
 Route::post('/cita', 'CitaController@store');
 
 
+//noticias
+Route::get('/anuncios', 'AnuncioController@index');
+Route::get('/anuncios/edit', 'AnuncioController@edit');
+Route::get('/anuncios/create', 'AnuncioController@create');
+Route::post('/anuncios', 'AnuncioController@store');
+
 
 
 Route::get ('/admin/formUser/{id}', 'UserController@formUserId');

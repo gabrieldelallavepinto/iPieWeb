@@ -16,7 +16,6 @@ class CitaController extends Controller
     return Cita::all();
   }
 
-
   public function create()
   {
     $clinicas = Clinica::all();
@@ -34,7 +33,7 @@ class CitaController extends Controller
     $cita = Cita::find($idCita);
     $clinicas = Clinica::all();
     $cliente = Cliente::find($cita->idCliente);
-    return view('citas.create', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita]);
+    return view('citas.edit', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita]);
   }
 
 

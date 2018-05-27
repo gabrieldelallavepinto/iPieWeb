@@ -1,3 +1,8 @@
+<?php
+    //ponemos la fecha en el formato correcto
+    $fecha = Date('d-m-Y',strtotime($fecha));
+?>
+
 <div class="container-fluid">
 
     <div class="row">
