@@ -25,8 +25,7 @@ Route::get('/calendario', function () {
 
 
 //calendario
-Route::get('/calendario', 'CalendarioController@index');
-Route::get('/calendario/{fecha}', 'CalendarioController@index');
+Route::get('/calendario', 'CalendarioController@index')->name('calendario');
 
 
 //citas

@@ -28,10 +28,10 @@ class CitaController extends Controller
 
   public function edit(Request $request)
   {
-    $id = $request['id'];
+    $idCita = $request['idCita'];
 
     $tiposCita = TipoCita::select('id','nombre','color')->get();
-    $cita = Cita::find($id);
+    $cita = Cita::find($idCita);
     $clinicas = Clinica::all();
     $cliente = Cliente::find($cita->idCliente);
     return view('citas.create', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita]);
