@@ -11,11 +11,11 @@
 //font-awesome
 @import "node_modules/font-awesome/scss/font-awesome";
 
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
-
 
 //cita
 .cita, .noCita{
@@ -56,3 +56,64 @@
 .datepicker table tr td.active{
   border-radius: 1rem;
 }
+
+
+
+
+//layout
+footer.sticky-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: $sticky-footer-height;
+
+  background-color: $gray-200;
+
+  line-height: 55px;
+  @media (min-width: 992px) {
+    width: calc(100% - #{$sidenav-base-width});
+  }
+}
+
+
+
+
+.flecha{
+  float: right;
+  content: "\f107";
+  font-family: 'FontAwesome';
+}
+
+//menu
+#contenido{
+  @media (min-width: 992px){
+    margin-left: 225px;
+    margin-top: 55px;
+    padding-top: 2rem;
+  }
+}
+#menuPrincipal{
+  padding: .5rem 2rem;
+  display: flex;
+}
+
+#menuIzquierda{
+  @media (min-width: 992px){
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-top: 54px;
+    background: #343a40;
+    height: calc(100vh);
+    width: 225px;
+    padding-left: 20px;
+  }
+}
+
+

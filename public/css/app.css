@@ -13092,3 +13092,57 @@ a.text-dark:focus {
   border-radius: 1rem;
 }
 
+footer.sticky-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 56px;
+  background-color: #e9ecef;
+  line-height: 55px;
+}
+
+@media (min-width: 992px) {
+  footer.sticky-footer {
+    width: calc(100% - 250px);
+  }
+}
+
+.flecha {
+  float: right;
+  content: "\F107";
+  font-family: 'FontAwesome';
+}
+
+@media (min-width: 992px) {
+  #contenido {
+    margin-left: 225px;
+    margin-top: 55px;
+    padding-top: 2rem;
+  }
+}
+
+#menuPrincipal {
+  padding: .5rem 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (min-width: 992px) {
+  #menuIzquierda {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -ms-flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    margin-top: 54px;
+    background: #343a40;
+    height: calc(100vh);
+    width: 225px;
+    padding-left: 20px;
+  }
+}
+

@@ -29,7 +29,7 @@
         
         @include('layout')
 
-        <div class="content-wrapper" style:"margin-top: 55px;">
+        <div id="contenido">
             @yield('content')
         </div>
 

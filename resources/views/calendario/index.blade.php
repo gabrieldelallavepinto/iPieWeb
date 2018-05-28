@@ -12,6 +12,11 @@
                     <div class="card-header"><h2>Calendario</h2></div>
                     <div class="card-body">
                         <div class="row">
+                            <div class='col-md-12'>
+                                NOMBRE DE LA CLINICA
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class='col-md-5 calendario'>
                                 {{-- calendario --}}
                                 <div id="datepicker" data-date="{{ $fecha }}" style="margin-left: 25%;"></div>
