@@ -1,6 +1,6 @@
 @extends('principal')
 @section('content')
-<link href="{{ asset('css/bootstrap-datepicker.css') }}" rel="stylesheet">
+{{-- <link href="{{ asset('css/bootstrap-datepicker.css') }}" rel="stylesheet"> --}}
 
     {{-- script para calendario --}}
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />

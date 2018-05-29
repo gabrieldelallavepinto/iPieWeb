@@ -39,8 +39,8 @@ class CitaController extends Controller
 
   public function store(Request $request)
   {
-
     $request['tiposCita'] = (int)$request['tiposCita'];
+    $request['fecha'] = date('Y-m-d H:i:s',strtotime($request['fecha'].' '.$request['hora']));
 
     $cliente = Cliente::find($request['idCliente']);
     if($cliente){
@@ -53,7 +53,8 @@ class CitaController extends Controller
       Cita::create($request->all());
     }
 
-    return route('citas.edit');
+    return redirect()->route('calendario');
+
 
   }
 

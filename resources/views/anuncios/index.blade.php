@@ -12,7 +12,7 @@
                     
                             <div class="col-md-4">
                                 <div class="card" style="height: 100%;">
-                                    <img class="card-img-top" src="1.jpg" alt="Card image cap">
+                                    <img class="card-img-top" src="{{ asset('images/noticia.png') }}" alt="Card image cap">
                                     
                                     <div class="card-body">
                                         <h4 class="card-title">{{ $anuncio['titulo'] }}</h4>

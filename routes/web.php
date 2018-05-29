@@ -21,9 +21,10 @@ Route::get('/', function(){
 });
 
 
-Route::group(['middleware' => ['noLogin']], function () {
+// Route::group(['middleware' => ['noLogin']], function () {
     
-
+Route::group(['middleware' => []], function () {
+    
     //calendario
     Route::get('/calendario', 'CalendarioController@index')->name('calendario');
 

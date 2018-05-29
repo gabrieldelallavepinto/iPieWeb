@@ -13,13 +13,14 @@ use DateTime;
 class CalendarioController extends Controller
 {
     public function index(Request $request){
+
         //obtenemos la fecha
         $fecha = $request['fecha'];
         
         //si no tenemos la fecha se obtiene el día actual
         if(!$fecha)
             $fecha = date("Y-m-d");
-        
+
         //fecha de inicio
         $fechaInicio = date('Y-m-d H:i:s', strtotime($fecha));
         //fecha + 1 dia
