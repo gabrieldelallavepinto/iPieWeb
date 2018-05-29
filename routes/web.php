@@ -70,3 +70,8 @@ Route::get('/showCita/{id}', 'CitaController@showCita');
 Route::get ('/citas/{date}', 'CitaController@citas');
 Route::get('/deleteCita/{id}', 'CitaController@deleteCita');
 
+
+Auth::routes();
+
+
+Route::get('/home', 'HomeController@index')->name('home');

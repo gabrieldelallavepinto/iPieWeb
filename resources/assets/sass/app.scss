@@ -90,7 +90,7 @@ footer.sticky-footer {
 #contenido{
   @media (min-width: 992px){
     margin-left: 225px;
-    margin-top: 55px;
+    margin-top: 70px;
     padding-top: 2rem;
   }
 }
@@ -100,15 +100,18 @@ footer.sticky-footer {
 }
 
 #menuIzquierda{
+  li{
+    padding-bottom: 1rem;
+  }
   @media (min-width: 992px){
-
+    padding-top: 3rem;
     position: absolute;
     top: 0;
     left: 0;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    margin-top: 54px;
+    margin-top: 70px;
     background: #343a40;
     height: calc(100vh);
     width: 225px;

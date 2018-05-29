@@ -27,13 +27,19 @@
     </head>
     <body>
         
-        @include('layout')
+        {{-- si está logueado --}}
+        @if(session('status'))
+            @include('layout')
 
-        <div id="contenido">
+            <div id="contenido">
+                @yield('content')
+            </div>
+
+        @else
+            
             @yield('content')
-        </div>
-
-
+        
+        @endif
 
         @yield('script')
         
