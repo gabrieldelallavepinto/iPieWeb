@@ -15,31 +15,33 @@ use App\Http\Resources\UserResource;
 |
 */
 
-Route::get('/', function () {
-    return view('logout');
-});
-
-Route::get('/calendario', function () {
-    return view('calendar.index');
+//inicio
+Route::get('/', function(){
+    return view('Auth.login');
 });
 
 
-//calendario
-Route::get('/calendario', 'CalendarioController@index')->name('calendario');
+Route::group(['middleware' => ['noLogin']], function () {
+    
+
+    //calendario
+    Route::get('/calendario', 'CalendarioController@index')->name('calendario');
 
 
-//citas
-Route::get('/cita/create', 'CitaController@create')->name('cita.create');
-Route::get('/cita/edit', 'CitaController@edit')->name('cita.edit');
-Route::post('/cita', 'CitaController@store');
+    //citas
+    Route::get('/cita/create', 'CitaController@create')->name('cita.create');
+    Route::get('/cita/edit', 'CitaController@edit')->name('cita.edit');
+    Route::post('/cita', 'CitaController@store');
 
 
-//noticias
-Route::get('/anuncios', 'AnuncioController@index')->name('anuncios');
-Route::get('/anuncios/edit', 'AnuncioController@edit');
-Route::get('/anuncios/create', 'AnuncioController@create');
-Route::post('/anuncios', 'AnuncioController@store');
+    //noticias
+    Route::get('/anuncios', 'AnuncioController@index')->name('anuncios');
+    Route::get('/anuncios/edit', 'AnuncioController@edit');
+    Route::get('/anuncios/create', 'AnuncioController@create');
+    Route::post('/anuncios', 'AnuncioController@store');
 
+
+});
 
 
 Route::get ('/admin/formUser/{id}', 'UserController@formUserId');
@@ -69,6 +71,7 @@ Route::post('/saveCita', 'CitaController@saveCita');
 Route::get('/showCita/{id}', 'CitaController@showCita');
 Route::get ('/citas/{date}', 'CitaController@citas');
 Route::get('/deleteCita/{id}', 'CitaController@deleteCita');
+
 
 
 Auth::routes();
