@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::post('/cita', 'CitaController@store');
 
 
-    //noticias
+    //anuncios
     Route::get('/anuncios', 'AnuncioController@index')->name('anuncios');
     Route::get('/anuncios/edit', 'AnuncioController@edit');
     Route::get('/anuncios/create', 'AnuncioController@create');

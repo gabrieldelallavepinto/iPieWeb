@@ -69,6 +69,11 @@ class AnuncioController extends Controller
 
     return Anuncio::create($anuncio);
   }
+  public function create(Request $request){
+    $anuncio = new Anuncio();
+    return view('anuncios.create', ['anuncio' => $anuncio]);
+
+  }
 
   public function update(Request $request, $id)
   {

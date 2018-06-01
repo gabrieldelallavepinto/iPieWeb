@@ -11,7 +11,7 @@
                         @foreach($anuncios as $anuncio)
                     
                             <div class="col-md-4">
-                                <div class="card" style="height: 100%;">
+                                <div class="anuncio card" style="height: 100%;">
                                     <img class="card-img-top" src="{{ asset('images/noticia.png') }}" alt="Card image cap">
                                     
                                     <div class="card-body">

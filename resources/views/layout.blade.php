@@ -16,7 +16,6 @@
     {{-- menú --}}
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="menuIzquierda">
-
         <li class="nav-item">
           <a class="nav-link" href="{{ route('calendario') }}">
             <i class="far fa-calendar-alt"></i>

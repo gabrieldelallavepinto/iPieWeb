@@ -28,7 +28,7 @@
     <body>
         
         {{-- si está logueado --}}
-        @if(!session('status'))
+        @if (Auth::check())
             @include('layout')
 
             <div id="contenido">
