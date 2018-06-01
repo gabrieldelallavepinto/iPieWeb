@@ -42,13 +42,13 @@
             <div class="nav-item">
               <a class="nav-link" href="">
                 <i class="far fa-calendar-alt"></i>
-                Usuario
+                Usuarios
               </a>
             </div>
             <div class="nav-item">
                 <a class="nav-link" href="">
                   <i class="far fa-calendar-alt"></i>
-                  Usuario
+                  Clinicas
                 </a>
               </div>
           </ul>
