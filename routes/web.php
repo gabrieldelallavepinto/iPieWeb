@@ -22,9 +22,9 @@ Route::get('/', function(){
 
 
 // Route::group(['middleware' => ['noLogin']], function () {
-    
-Route::group(['middleware' => []], function () {
-    
+
+Route::group(['middleware' => 'auth:web'], function () {
+
     //calendario
     Route::get('/calendario', 'CalendarioController@index')->name('calendario');
 
@@ -42,40 +42,38 @@ Route::group(['middleware' => []], function () {
     Route::post('/anuncios', 'AnuncioController@store');
 
 
+    Route::get ('/admin/formUser/{id}', 'UserController@formUserId');
+    Route::get ('/admin/formUser', 'UserController@formUser');
+    Route::post('/admin/saveUser', 'UserController@saveUser');
+    Route::get('/admin/showUser/{id}', 'UserController@showUser');
+    Route::get ('/admin/users', 'UserController@users');
+    Route::get('/admin/deleteUser/{id}', 'UserController@deleteUser');
+
+    Route::get ('/admin/formClinica/{id}', 'ClinicaController@formClinicaId');
+    Route::get ('/admin/formClinica', 'ClinicaController@formClinica');
+    Route::post('/admin/saveClinica', 'ClinicaController@saveClinica');
+    Route::get('/admin/showClinica/{id}', 'ClinicaController@showClinica');
+    Route::get ('/admin/clinicas', 'ClinicaController@clinicas');
+    Route::get('/admin/deleteClinica/{id}', 'ClinicaController@deleteClinica');
+
+    Route::get ('/formNota/{id}', 'NotaController@formNotaId');
+    Route::get ('/formNota', 'NotaController@formNota');
+    Route::post('/saveNota', 'NotaController@saveNota');
+    Route::get('/showNota/{id}', 'NotaController@showNota');
+    Route::get ('/notas/{date}', 'NotaController@notas');
+    Route::get('/deleteNota/{id}', 'NotaController@deleteNota');
+
+    Route::get ('/formCita/{id}', 'CitaController@formCitaId');
+    Route::get ('/formCita', 'CitaController@formCita');
+    Route::post('/saveCita', 'CitaController@saveCita');
+    Route::get('/showCita/{id}', 'CitaController@showCita');
+    Route::get ('/citas/{date}', 'CitaController@citas');
+    Route::get('/deleteCita/{id}', 'CitaController@deleteCita');
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
 });
 
-
-Route::get ('/admin/formUser/{id}', 'UserController@formUserId');
-Route::get ('/admin/formUser', 'UserController@formUser');
-Route::post('/admin/saveUser', 'UserController@saveUser');
-Route::get('/admin/showUser/{id}', 'UserController@showUser');
-Route::get ('/admin/users', 'UserController@users');
-Route::get('/admin/deleteUser/{id}', 'UserController@deleteUser');
-
-Route::get ('/admin/formClinica/{id}', 'ClinicaController@formClinicaId');
-Route::get ('/admin/formClinica', 'ClinicaController@formClinica');
-Route::post('/admin/saveClinica', 'ClinicaController@saveClinica');
-Route::get('/admin/showClinica/{id}', 'ClinicaController@showClinica');
-Route::get ('/admin/clinicas', 'ClinicaController@clinicas');
-Route::get('/admin/deleteClinica/{id}', 'ClinicaController@deleteClinica');
-
-Route::get ('/formNota/{id}', 'NotaController@formNotaId');
-Route::get ('/formNota', 'NotaController@formNota');
-Route::post('/saveNota', 'NotaController@saveNota');
-Route::get('/showNota/{id}', 'NotaController@showNota');
-Route::get ('/notas/{date}', 'NotaController@notas');
-Route::get('/deleteNota/{id}', 'NotaController@deleteNota');
-
-Route::get ('/formCita/{id}', 'CitaController@formCitaId');
-Route::get ('/formCita', 'CitaController@formCita');
-Route::post('/saveCita', 'CitaController@saveCita');
-Route::get('/showCita/{id}', 'CitaController@showCita');
-Route::get ('/citas/{date}', 'CitaController@citas');
-Route::get('/deleteCita/{id}', 'CitaController@deleteCita');
-
-
-
-Auth::routes();
-
-
-Route::get('/home', 'HomeController@index')->name('home');
+$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+$this->post('login', 'Auth\LoginController@login');
+$this->post('logout', 'Auth\LoginController@logout')->name('logout');

@@ -8,6 +8,9 @@ use App\Cita;
 use App\TipoCita;
 use App\Cliente;
 use App\Clinica;
+use App\User;
+
+use Validator, Input, Redirect;
 
 class CitaController extends Controller
 {
@@ -20,9 +23,10 @@ class CitaController extends Controller
   {
     $clinicas = Clinica::all();
     $tiposCita = TipoCita::select('id','nombre','color')->get();
+    $podologos = User::all();
     $cita = new Cita;
     $cliente = new Cliente;
-    return view('citas.create', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita]);
+    return view('citas.create', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita, 'podologos' => $podologos]);
   }
 
   public function edit(Request $request)
@@ -39,8 +43,14 @@ class CitaController extends Controller
 
   public function store(Request $request)
   {
+    $clinicas = Clinica::all();
+    $tiposCita = TipoCita::select('id','nombre','color')->get();
+    $podologos = User::all();
+    $cita = new Cita;
+
     $request['tiposCita'] = (int)$request['tiposCita'];
     $request['fecha'] = date('Y-m-d H:i:s',strtotime($request['fecha'].' '.$request['hora']));
+
 
     $cliente = Cliente::find($request['idCliente']);
     if($cliente){
@@ -48,6 +58,11 @@ class CitaController extends Controller
       $cita = Cita::find($request['idCita']);
       $cita->update($request->all());
     }else{
+      $cliente = new Cliente;
+      $validator = Validator::make($request->all(),$cita->rules);
+      if($validator->fails()){
+         return view('citas.create', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita, 'podologos' => $podologos])->withErrors($validator);
+      }
       $cliente = Cliente::create($request->all());
       $request['idCliente']=$cliente->id;
       Cita::create($request->all());
@@ -129,8 +144,8 @@ class CitaController extends Controller
 
   public function citas($date)
   {
-    $citas = $this->showByDate($date);
-    return view('citas.listNotas',['citas' => $citas, 'fecha' => $date]);
+    //$citas = $this->showByDate($date);
+    //return view('citas.listNotas',['citas' => $citas, 'fecha' => $date]);
   }
 
   public function deleteNota($id)

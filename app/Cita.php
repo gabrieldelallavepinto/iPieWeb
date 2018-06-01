@@ -11,7 +11,8 @@ class Cita extends Model
       'idTipo' => 'required',
       'idClinica' => 'required',
       'fecha' => 'required',
-      'idPodologo' => 'required'
+      'idPodologo' => 'required',
+      'idCliente' => 'required'
     ];
 
 

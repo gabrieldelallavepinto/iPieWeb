@@ -11,7 +11,7 @@ class Cliente extends Model
   public $rules = [
     'nombre' => 'required',
     'apellidos' => 'required',
-    'tlfnFijo' => 'min:9|max:9',
+    'tlfnFijo' => 'required|min:9|max:9',
     'tlfnMovil' => 'min:9|max:9'
   ];
 

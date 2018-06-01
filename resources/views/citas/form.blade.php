@@ -1,5 +1,5 @@
 
-<?php 
+<?php
     //separamos la fecha de la hora
     if($cita->fecha != ''){
         $fechaHora = explode(" ",$cita->fecha);
@@ -17,7 +17,7 @@
 
     <div class="row">
         <div class="col-md-12"><h4>Datos de cliente</h4></div>
-        
+
         <div class="d-none form-group col-md-6">
             <label for="idCliente">Id cliente</label>
             <input class="form-control" id="idCliente" name="idCliente" type="text" placeholder="idCliente" value="{{ $cliente->id }}">
@@ -41,9 +41,9 @@
 
         <div class="col-md-12"><h4>Datos de la cita</h4></div>
         <div class="form-group col-md-6">
-            <label for="idClinica">Tipo de consulta</label>
+            <label for="idClinica">Clínica</label>
             <select class="form-control" id="idClinica" name="idClinica">
-                <option>Seleccionar tipo de cita</option>
+                <option>Seleccionar clínica</option>
                 @foreach($clinicas as $clinica)
                     <option value="{{ $clinica->id }}">{{ $clinica->provincia }}, {{ $clinica->ciudad }}</option>
                 @endforeach
@@ -69,6 +69,19 @@
         <div class="form-group col-md-6">
             <label for="hora">Hora</label>
             <input class="form-control" type="time" id="hora" name="hora" value="{{ $horaCita }}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="idPodologo">Podolog@</label>
+            <select class="form-control" id="idPodologo" name="idPodologo">
+                <option>Seleccionar podolog@</option>
+                @foreach($podologos as $podologo)
+                    <option value="{{ $podologo->id }}">{{ $podologo->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="d-none form-group col-md-6">
+            <label for="idUsuario">idUsuario</label>
+            <input class="form-control" id="idUsuario" name="idUsuario" type="text" placeholder="idUsuario" value="{{ Auth::user()->id }}">
         </div>
         <div class="form-group col-md-12">
             <label for="notas">Notas</label>
