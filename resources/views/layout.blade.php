@@ -59,14 +59,16 @@
 
       <ul class="navbar-nav ml-auto">
         {{-- Mostrar Usuario --}}
+        {{--
         <li class="nav-item">
           @if (isset(Auth::user()->name))
-
+             Mostrar el nombre de usuario para el login
             {{ Auth::user()->name}}
 
           @endif
 
         </li>
+        --}}
         {{-- cerrar sesión --}}
         <li class="nav-item">
           <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
