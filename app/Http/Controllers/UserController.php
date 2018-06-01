@@ -45,7 +45,7 @@ class UserController extends Controller
     }
 
     public function formUser(){
-      return view('admin.formUser', ['api_token' => Session::get('api_token')]);
+      return view('auth.register', ['tipoUsuarios' => TipoUsuario::all()]);
     }
     public function formUserId($id)
     {

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Cita;
 use App\TipoCita;
 use App\Cliente;
+use App\User;
+use App\Clinica;
 
 class CitaController extends Controller
 {
@@ -20,13 +22,15 @@ class CitaController extends Controller
     $tiposCita = TipoCita::select('id','nombre','color')->get();
     $cita = new Cita;
     $cliente = new Cliente;
-    return view('citas.create', ['cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita]);
+    $podologos = User::select('id','name')->get();
+    $clinicas = Clinica::select('id', 'ciudad','provincia','direccion')->get();
+    return view('citas.create', ['tiposCita' => $tiposCita, 'podologos' => $podologos, 'clinicas' => $clinicas]);
   }
 
   public function edit(Request $request)
   {
     $id = $request['id'];
-    
+
     $tiposCita = TipoCita::select('id','nombre','color')->get();
     $cita = Cita::find($id);
     $cliente = Cliente::find($cita->idCliente);
@@ -36,7 +40,7 @@ class CitaController extends Controller
 
   public function store(Request $request)
   {
-    
+
     return Cita::create($request->all());
   }
 
@@ -72,15 +76,6 @@ class CitaController extends Controller
 
   public function showByDatePodologoClinica($podologo, $clinica, $date){
     return Cita::whereDate('fecha', $date)->where('idClinica','=',$clinica)->where('idPodologo','=', $podologo)->get();
-  }
-
-  public function formCita(){
-    return view('citas.form', ['fecha' => date("Y-m-d"), 'tiposCita' => TipoCita::all()]);
-  }
-  public function formCitaId($id)
-  {
-    $cita = $this->show($id);
-    return view('citas.form', [ 'cita' => $cita, 'fecha' => date("Y-m-d"), 'cliente' => Cliente::find($cita->idUsuario), 'tiposCita' => TipoCita::all()]);
   }
 
   public function showCita($id)

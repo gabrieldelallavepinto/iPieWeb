@@ -16,11 +16,11 @@ use App\Http\Resources\UserResource;
 */
 Route::middleware('auth:web')->get('/user',function(Request $request)
 {
-  
-})
+
+});
 
 Route::get('/', function () {
-    return view('calendar.index');
+    return view('auth.login');
 });
 
 Route::get('/calendario', function () {
