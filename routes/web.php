@@ -15,16 +15,34 @@ use App\Http\Resources\UserResource;
 |
 */
 
-Route::get('/', function () {
-    return view('logout');
+//inicio
+Route::get('/', function(){
+    return view('Auth.login');
 });
 
-Route::get('/calendario', function () {
-    return view('calendar.index');
-});
 
-//citas
-Route::get('/citas/create', 'CitaController@create');
+// Route::group(['middleware' => ['noLogin']], function () {
+    
+Route::group(['middleware' => []], function () {
+    
+    //calendario
+    Route::get('/calendario', 'CalendarioController@index')->name('calendario');
+
+
+    //citas
+    Route::get('/cita/create', 'CitaController@create')->name('cita.create');
+    Route::get('/cita/edit', 'CitaController@edit')->name('cita.edit');
+    Route::post('/cita', 'CitaController@store');
+
+
+    //noticias
+    Route::get('/anuncios', 'AnuncioController@index')->name('anuncios');
+    Route::get('/anuncios/edit', 'AnuncioController@edit');
+    Route::get('/anuncios/create', 'AnuncioController@create');
+    Route::post('/anuncios', 'AnuncioController@store');
+
+
+});
 
 
 Route::get ('/admin/formUser/{id}', 'UserController@formUserId');
@@ -55,14 +73,9 @@ Route::get('/showCita/{id}', 'CitaController@showCita');
 Route::get ('/citas/{date}', 'CitaController@citas');
 Route::get('/deleteCita/{id}', 'CitaController@deleteCita');
 
-Route::get ('/admin/formTipoCita/{id}', 'TipoCitaController@formTipoCitaId');
-Route::get ('/admin/formTipoCita', 'TipoCitaController@formTipoCita');
-Route::post('/admin/saveTipoCita', 'TipoCitaController@saveTipoCita');
-Route::get('/admin/showTipoCita/{id}', 'TipoCitaController@showTipoCita');
-Route::get ('/admin/tipocitas', 'TipoCitaController@tipocitas');
-Route::get('/admin/deleteTipoCita/{id}', 'TipoCitaController@deleteTipoCita');
 
 
 Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');

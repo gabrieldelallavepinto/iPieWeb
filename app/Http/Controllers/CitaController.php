@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Route;
 use App\Cita;
 use App\TipoCita;
+use App\Cliente;
+use App\Clinica;
 
 class CitaController extends Controller
 {
@@ -15,19 +18,52 @@ class CitaController extends Controller
 
   public function create()
   {
+    $clinicas = Clinica::all();
     $tiposCita = TipoCita::select('id','nombre','color')->get();
-    return view('citas.form', ['tiposCita' => $tiposCita]);
+    $cita = new Cita;
+    $cliente = new Cliente;
+    return view('citas.create', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita]);
   }
+
+  public function edit(Request $request)
+  {
+    $idCita = $request['idCita'];
+
+    $tiposCita = TipoCita::select('id','nombre','color')->get();
+    $cita = Cita::find($idCita);
+    $clinicas = Clinica::all();
+    $cliente = Cliente::find($cita->idCliente);
+    return view('citas.edit', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita]);
+  }
+
+
+  public function store(Request $request)
+  {
+    $request['tiposCita'] = (int)$request['tiposCita'];
+    $request['fecha'] = date('Y-m-d H:i:s',strtotime($request['fecha'].' '.$request['hora']));
+
+    $cliente = Cliente::find($request['idCliente']);
+    if($cliente){
+      $cliente->update($request->all());
+      $cita = Cita::find($request['idCita']);
+      $cita->update($request->all());
+    }else{
+      $cliente = Cliente::create($request->all());
+      $request['idCliente']=$cliente->id;
+      Cita::create($request->all());
+    }
+
+    return redirect()->route('calendario');
+
+
+  }
+
 
   public function show($id)
   {
     return Cita::find($id);
   }
 
-  public function store(Request $request)
-  {
-    return Cita::create($request->all());
-  }
 
   public function update(Request $request, $id)
   {
@@ -103,4 +139,5 @@ class CitaController extends Controller
     $article->delete();
     return redirect('/citas/'.date("Y-m-d"));
   }
+
 }

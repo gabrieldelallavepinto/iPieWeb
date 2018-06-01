@@ -11,7 +11,112 @@
 //font-awesome
 @import "node_modules/font-awesome/scss/font-awesome";
 
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+//cita
+.cita, .noCita{
+  padding: 0.5rem;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  cursor: pointer;
+  cursor: hand;
+
+  .color{
+    height: 100%;
+    min-height: 50px;
+    width: 25px;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+  }
+
+}
+
+//botones circulares
+.btn.crear{
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 24px;
+  line-height: 1.33;
+  position: fixed;
+  right: 5%;
+  z-index: 1000;
+  bottom: 5%;
+}
+
+
+//calendario
+.datepicker table tr td.active{
+  border-radius: 1rem;
+}
+
+
+
+
+//layout
+footer.sticky-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: $sticky-footer-height;
+
+  background-color: $gray-200;
+
+  line-height: 55px;
+  @media (min-width: 992px) {
+    width: calc(100% - #{$sidenav-base-width});
+  }
+}
+
+
+
+
+.flecha{
+  float: right;
+  content: "\f107";
+  font-family: 'FontAwesome';
+}
+
+//menu
+#contenido{
+  @media (min-width: 992px){
+    margin-left: 225px;
+    margin-top: 70px;
+    padding-top: 2rem;
+  }
+}
+#menuPrincipal{
+  padding: .5rem 2rem;
+  display: flex;
+}
+
+#menuIzquierda{
+  li{
+    padding-bottom: 1rem;
+  }
+  @media (min-width: 992px){
+    padding-top: 3rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-top: 70px;
+    background: #343a40;
+    height: calc(100vh);
+    width: 225px;
+    padding-left: 20px;
+  }
+}
+
+
