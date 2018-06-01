@@ -72,6 +72,8 @@ Route::group(['middleware' => 'auth:web'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+    $this->get('register', 'Auth\LoginController@showRegisterForm')->name('register');
+
 });
 
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');

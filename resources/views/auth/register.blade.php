@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('content')
 <div class="container">
@@ -58,6 +58,19 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Rol de Usuario</label>
+
+                            <div class="col-md-6">
+                              <select class="form-control" id="tipo" name="tipo">
+                                  <option>Seleccionar Rol</option>
+                                  @foreach($tipoUsuarios as $tipoUsuario)
+                                      <option value="{{ $tipoUsuario->id }}">{{ $tipoUsuario->name }}</option>
+                                  @endforeach
+                              </select>
                             </div>
                         </div>
 

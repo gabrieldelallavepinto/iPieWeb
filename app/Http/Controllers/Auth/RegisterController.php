@@ -86,11 +86,12 @@ class RegisterController extends Controller
 
     public function register($value='')
     {
-        
+
     }
 
     public function showRegistrationForm($value='')
     {
+        $tipoUsuarios = 
         return view('auth.register');
     }
 
