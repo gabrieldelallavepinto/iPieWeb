@@ -1,7 +1,9 @@
 {{-- Panel de administración --}}
 
 {{-- <link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet"> --}}
-
+<?php
+$user = Auth::user();
+?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="menuPrincipal">
 
@@ -16,6 +18,16 @@
     {{-- menú --}}
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="menuIzquierda">
+
+          <li class="nav-item">
+              <a class="nav-link" href="#">
+                  <i class="far fa-address-card"></i>
+
+
+                bienvenido {{ $user->name }}
+              </a>
+            </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="{{ route('calendario') }}">
             <i class="far fa-calendar-alt"></i>

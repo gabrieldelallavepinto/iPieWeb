@@ -12,11 +12,13 @@ use DateTime;
 
 class CalendarioController extends Controller
 {
+
     public function index(Request $request){
+        
 
         //obtenemos la fecha
         $fecha = $request['fecha'];
-        
+
         //si no tenemos la fecha se obtiene el día actual
         if(!$fecha)
             $fecha = date("Y-m-d");
@@ -26,8 +28,19 @@ class CalendarioController extends Controller
         //fecha + 1 dia
         $fechaFin = date('Y-m-d H:i:s', strtotime($fecha . ' +1 day'));
 
-        //obtenemos todas las citas del dia ordenadas por fecha
-        $citas = Cita::where('fecha','>=',$fechaInicio)->where('fecha','<',$fechaFin)->orderby('fecha')->get();
+        //obtenemos todas las citas de la clinica y del dia ordenadas por fecha
+        $citas = Cita::where('fecha','>=',$fechaInicio)->where('fecha','<',$fechaFin);
+
+        //obtenemos la clinica
+        $datos['clinica']='';
+        if(isset($request['clinica']) && $request['clinica']!=''){
+            $citas = $citas->where('idClinica', $request['clinica']);
+            $datos['clinica'] = $request['clinica'];
+        }
+        $citas = $citas->orderby('fecha')->get();
+
+        //obtenemos todas las clinicas
+        $clinicas = Clinica::all();
 
         //guardamos el tipo de cita, el cliente asociado, la fecha y hora
         foreach($citas as $key => $cita){
@@ -35,7 +48,7 @@ class CalendarioController extends Controller
             $citas[$key]['paciente'] = Cliente::find($cita->idCliente);
         }
 
-        return view('calendario.index', ['citas' => $citas,'fecha' => $fecha,]);
+        return view('calendario.index', ['citas' => $citas,'fecha' => $fecha, 'clinicas' => $clinicas, 'datos' => $datos,]);
     }
 
     public function citas(){
@@ -52,4 +65,5 @@ class CalendarioController extends Controller
 
         return view('calendario.citas', ['citas' => $citas,'fecha' => $fecha,]);
     }
+    
 }
