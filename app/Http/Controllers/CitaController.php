@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Route;
+use Html;
 use App\Cita;
 use App\TipoCita;
 use App\Cliente;
