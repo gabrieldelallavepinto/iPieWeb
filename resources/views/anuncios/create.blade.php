@@ -5,7 +5,7 @@
     <div class="card mx-auto">
         <div class="card-header"><h2>Crear Anuncio</h2></div>
         <div class="card-body">
-            {{-- @include('citas.form') --}}
+          @include('anuncios.form')
         </div>
     </div>
 </div>

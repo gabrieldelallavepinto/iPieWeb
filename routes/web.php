@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::get('/anuncios', 'AnuncioController@index')->name('anuncios');
     Route::get('/anuncios/edit', 'AnuncioController@edit');
     Route::get('/anuncios/create', 'AnuncioController@create');
-    Route::post('/anuncios', 'AnuncioController@store');
+    Route::post('/anuncios', 'AnuncioController@saveAnuncio');
 
 
     Route::get ('/admin/formUser/{id}', 'UserController@formUserId');

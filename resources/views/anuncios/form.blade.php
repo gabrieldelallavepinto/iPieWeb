@@ -1,79 +1,47 @@
 
-<?php 
-    //separamos la fecha de la hora
-    if($cita->fecha != ''){
-        $fechaHora = explode(" ",$cita->fecha);
-        $fechaCita = date('d-m-Y',strtotime($fechaHora[0]));
-        $horaCita = date('h:i',strtotime($fechaHora[1]));
-    }
-    else{
-        $fechaCita = date('d-m-Y');
-        $horaCita = date('h:i');
-    }
+<?php
+
 ?>
 
-<form action="{{ action('CitaController@store') }}" method="post">
+<form action="{{ action('AnuncioController@saveAnuncio') }}" method="post">
     {{ csrf_field() }}
 
     <div class="row">
-        <div class="col-md-12"><h4>Datos de cliente</h4></div>
-        
+        <div class="col-md-12"><h4>Anuncio</h4></div>
+
         <div class="d-none form-group col-md-6">
-            <label for="idCliente">Id cliente</label>
-            <input class="form-control" id="idCliente" name="idCliente" type="text" placeholder="idCliente" value="{{ $cliente->id }}">
+            <label for="id">Id</label>
+            <input class="form-control" id="id" name="id" type="text" placeholder="id" value="{{ $anuncio->id }}">
+        </div>
+        <div class="d-none form-group col-md-6">
+            <label for="idUsuario">idUsuario</label>
+            <input class="form-control" id="idUsuario" name="idUsuario" type="text" placeholder="idUsuario" value="{{ Auth::user()->id }}">
         </div>
         <div class="form-group col-md-6">
-            <label for="nombre">Nombre</label>
-            <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre" value="{{ $cliente->nombre }}">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="apellidos">Apellidos</label>
-            <input class="form-control" id="apellidos" name="apellidos" type="text" placeholder="Apellidos" value="{{ $cliente->apellidos }}">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="tlfnFijo">Teléfono fijo</label>
-            <input class="form-control" id="tlfnFijo" name="tlfnFijo" type="text" placeholder="Teléfono fijo" value="{{ $cliente->tlfnFijo }}">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="tlfnMovil">Teléfono movil</label>
-            <input class="form-control" id="tlfnMovil" name="tlfnMovil" type="text" placeholder="Teléfono movil" value="{{ $cliente->tlfnMovil }}">
+            <label for="titulo">Titulo</label>
+            <input class="form-control" id="titulo" name="titulo" type="text" placeholder="Titulo" value="{{ $anuncio->titulo }}" required>
         </div>
 
-        <div class="col-md-12"><h4>Datos de la cita</h4></div>
-        <div class="form-group col-md-6">
-            <label for="idClinica">Tipo de consulta</label>
-            <select class="form-control" id="idClinica" name="idClinica">
-                <option>Seleccionar tipo de cita</option>
-                @foreach($clinicas as $clinica)
-                    <option value="{{ $clinica->id }}">{{ $clinica->provincia }}, {{ $clinica->ciudad }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="d-none form-group col-md-6">
-            <label for="idCita">Id cita</label>
-            <input class="form-control" id="idCita" name="idCita" type="text" placeholder="idCita" value="{{ $cita->id }}">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="idTipo">Tipo de consulta</label>
-            <select class="form-control" id="idTipo" name="idTipo">
-                <option>Seleccionar tipo de cita</option>
-                @foreach($tiposCita as $tipoCita)
-                    <option value="{{ $tipoCita->id }}" style="color: {{ $tipoCita->color }};">{{ $tipoCita->nombre }}</option>
-                @endforeach
-            </select>
-        </div>
         <div class="form-group col-md-6">
             <label for="fecha">Fecha</label>
-            <input class="form-control" id="fecha" name="fecha" data-provide="datepicker" value="{{ $fechaCita }}">
+            <input class="form-control" id="fecha" name="fecha" data-provide="datepicker" value="{{ $anuncio->fecha }}">
         </div>
-        <div class="form-group col-md-6">
-            <label for="hora">Hora</label>
-            <input class="form-control" type="time" id="hora" name="hora" value="{{ $horaCita }}">
-        </div>
+
         <div class="form-group col-md-12">
-            <label for="notas">Notas</label>
-            <textarea class="form-control" rows="4" id="notas" name="notas" type="text" placeholder="Escribe las notas que necesites">{{ $cita->notas }}</textarea>
+            <label for="descripcion">Descripción</label>
+            <textarea class="form-control" rows="4" id="descripcion" name="descripcion" type="text" placeholder="Escribe la descripción del anuncio" required>{{ $anuncio->descripcion }}</textarea>
         </div>
+
+        <div class="form-group col-md-6">
+            <label for="imagen">Imagen</label>
+            <input class="form-control" id="imagen" name="imagen" type="file" placeholder="Seleciona Imagen" value="{{ $anuncio->imagen }}" >
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="pdf">PDF adjunto</label>
+            <input class="form-control" id="pdf" name="pdf" type="file" placeholder="Seleciona pdf" value="{{ $anuncio->pdf }}" >
+        </div>
+
 
         <div class="col-md-12"><button type="submit" class="btn btn-primary">Guardar</button></div>
     </div>
@@ -83,6 +51,6 @@
     <script>
         $('#fecha').datepicker({
             language: 'es',
-            format: 'dd-mm-yyyy',
+            format: 'yyyy-mm-dd',
         });
     </script>
