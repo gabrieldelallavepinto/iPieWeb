@@ -63,6 +63,10 @@ class CitaController extends Controller
          return view('citas.create', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita, 'podologos' => $podologos])->withErrors($validator);
       }
 
+      if($request->ajax()){
+          Cliente::create($request->all());
+          return response()->json(["mensaje" => "creado"]);
+      }
       $cliente = Cliente::create($request->all());
       $request['idCliente']=$cliente->id;
       Cita::create($request->all());

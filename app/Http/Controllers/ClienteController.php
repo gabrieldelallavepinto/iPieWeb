@@ -19,11 +19,6 @@ class ClienteController extends Controller
 
   public function store(Request $request)
   {
-      if($request->ajax()){
-          Cliente::create($request->all());
-            return response()->json(["mensaje" => "creado"]);
-      }
-
     return Cliente::create($request->all());
   }
 
