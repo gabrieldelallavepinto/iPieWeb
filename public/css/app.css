@@ -13151,3 +13151,8 @@ footer.sticky-footer {
   }
 }
 
+.anuncio {
+  cursor: pointer;
+  cursor: hand;
+}
+

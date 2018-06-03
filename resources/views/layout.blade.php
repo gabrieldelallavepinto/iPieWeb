@@ -1,7 +1,9 @@
 {{-- Panel de administración --}}
 
 {{-- <link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet"> --}}
-
+<?php
+$user = Auth::user();
+?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="menuPrincipal">
 
@@ -17,6 +19,15 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="menuIzquierda">
 
+          <li class="nav-item">
+              <a class="nav-link" href="#">
+                  <i class="far fa-address-card"></i>
+
+
+                bienvenido {{ $user->name }}
+              </a>
+            </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="{{ route('calendario') }}">
             <i class="far fa-calendar-alt"></i>
@@ -65,14 +76,16 @@
 
       <ul class="navbar-nav ml-auto">
         {{-- Mostrar Usuario --}}
+        {{--
         <li class="nav-item">
           @if (isset(Auth::user()->name))
-
+             Mostrar el nombre de usuario para el login
             {{ Auth::user()->name}}
 
           @endif
 
         </li>
+        --}}
         {{-- cerrar sesión --}}
         <li class="nav-item">
           <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

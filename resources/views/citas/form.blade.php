@@ -105,8 +105,7 @@
             <label for="notas">Notas</label>
             <textarea class="form-control" rows="4" id="notas" name="notas" type="text" placeholder="Escribe las notas que necesites">{{ $cita->notas }}</textarea>
         </div>
-
-        <div class="col-md-12"><button type="submit" class="btn btn-primary">Guardar</button></div>
+            <div class="col-md-12"><button type="submit" class="btn btn-primary">Guardar</button></div>
     </div>
 
 </form>

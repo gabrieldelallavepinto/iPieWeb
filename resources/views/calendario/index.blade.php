@@ -12,8 +12,25 @@
                     <div class="card-header"><h2>Calendario</h2></div>
                     <div class="card-body">
                         <div class="row">
-                            <div class='col-md-12'>
-                                NOMBRE DE LA CLINICA
+                            <div class="form-group col-md-12">
+
+                                <form id="datos" action="{{ action('CitaController@store') }}" method="post">
+
+                                    <div class="form-group col-md-4">
+                                        <label for="clinica">Clinica</label>
+                                        <select class="form-control" id="clinica" name="clinica" selected="{{ $datos['clinica'] }}">
+                                            <option value=''>Todas las clínicas</option>
+                                            @foreach($clinicas as $clinica)
+                                                @if($datos['clinica'] == $clinica->id)
+                                                    <option value="{{ $clinica->id }}" selected>{{ $clinica->ciudad }}</option>
+                                                @else
+                                                    <option value="{{ $clinica->id }}" >{{ $clinica->ciudad }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                </form>
                             </div>
                         </div>
                         <div class="row">
@@ -46,19 +63,13 @@
             format: 'yyyy-mm-dd',
         });
 
-        $('#datepicker').on('changeDate', function() {
-            $fecha =  $('#datepicker').datepicker('getFormattedDate');
-            $datos = '?fecha='+$fecha;
-
-            window.location.href = "/calendario"+$datos;
-        });
+        
         
         //editamos la cita al darle click
         $('.cita').on('click',function(){
             $idCita = $(this).attr("id");
 
             $datos = '?idCita='+$idCita;
-            console.log($datos);
             
             window.location.href = "{{ route('cita.edit') }}"+$datos;
         });
@@ -68,5 +79,27 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
         
+        //al cambiar el imput clinica
+        $('#clinica').change(function(){
+            $datos = datos();
+
+            window.location.href = "/calendario"+$datos;
+        });
+        //al cambiar el calendario
+        $('#datepicker').on('changeDate', function() {
+            $datos = datos();
+
+            window.location.href = "/calendario"+$datos;
+        });
+        function datos(){
+            $datos = '?';
+            $datos += $('#datos').serialize();
+
+            $fecha =  $('#datepicker').datepicker('getFormattedDate');
+            $datos += '&fecha='+$fecha;
+
+            return $datos;
+        }
+
     </script>
 @stop
