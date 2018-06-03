@@ -32,12 +32,12 @@ class CitaController extends Controller
   public function edit(Request $request)
   {
     $idCita = $request['idCita'];
-
+    $podologos = User::all();
     $tiposCita = TipoCita::select('id','nombre','color')->get();
     $cita = Cita::find($idCita);
     $clinicas = Clinica::all();
     $cliente = Cliente::find($cita->idCliente);
-    return view('citas.edit', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita]);
+    return view('citas.edit', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita,  'podologos' => $podologos]);
   }
 
 
@@ -58,11 +58,11 @@ class CitaController extends Controller
       $cita = Cita::find($request['idCita']);
       $cita->update($request->all());
     }else{
-      $cliente = new Cliente;
-      $validator = Validator::make($request->all(),$cita->rules);
-      if($validator->fails()){
-         return view('citas.create', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita, 'podologos' => $podologos])->withErrors($validator);
-      }
+      //$cliente = new Cliente;
+      //$validator = Validator::make($request->all(),$cita->rules);
+      //if($validator->fails()){
+      //   return view('citas.create', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita, 'podologos' => $podologos])->withErrors($validator);
+      //}
       $cliente = Cliente::create($request->all());
       $request['idCliente']=$cliente->id;
       Cita::create($request->all());

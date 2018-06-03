@@ -45,7 +45,12 @@
             <select class="form-control" id="idClinica" name="idClinica">
                 <option>Seleccionar clínica</option>
                 @foreach($clinicas as $clinica)
+                  @if ($clinica->id == $cita->idClinica)
+                    <option value="{{ $clinica->id }}" selected>{{ $clinica->provincia }}, {{ $clinica->ciudad }}</option>
+                  @else
                     <option value="{{ $clinica->id }}">{{ $clinica->provincia }}, {{ $clinica->ciudad }}</option>
+                  @endif
+
                 @endforeach
             </select>
         </div>
@@ -58,7 +63,13 @@
             <select class="form-control" id="idTipo" name="idTipo">
                 <option>Seleccionar tipo de cita</option>
                 @foreach($tiposCita as $tipoCita)
+
+                  @if ($tipoCita->id == $cita->idTipo)
+                    <option value="{{ $tipoCita->id }}" style="color: {{ $tipoCita->color }};" selected>{{ $tipoCita->nombre }}</option>
+                  @else
                     <option value="{{ $tipoCita->id }}" style="color: {{ $tipoCita->color }};">{{ $tipoCita->nombre }}</option>
+                  @endif
+
                 @endforeach
             </select>
         </div>
@@ -75,7 +86,14 @@
             <select class="form-control" id="idPodologo" name="idPodologo">
                 <option>Seleccionar podolog@</option>
                 @foreach($podologos as $podologo)
-                    <option value="{{ $podologo->id }}">{{ $podologo->name }}</option>
+                    @if ($podologo->id == $cita->idPodologo)
+                      <option value="{{ $podologo->id }}" selected>{{ $podologo->name }}</option>
+                    @else
+                      <option value="{{ $podologo->id }}">{{ $podologo->name }}</option>
+                    @endif
+
+
+
                 @endforeach
             </select>
         </div>
@@ -97,4 +115,20 @@
             language: 'es',
             format: 'dd-mm-yyyy',
         });
+
+        $.ajax({
+
+            url: 'cita/create',
+            type: 'get',
+            data: $data,
+            success: function(data){
+                alert(data);
+
+            }
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+                alert(errorThrown);
+            }
+            e.preventDefault();
+    });
     </script>

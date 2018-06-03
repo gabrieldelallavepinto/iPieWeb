@@ -58,7 +58,7 @@ class TipoCitaController extends Controller
     else {
         $tipocita = $this->store($request);
     }
-    return redirect('/admin/showTipoCita/'.$tipocita->id);
+    return redirect('/admin/tipocitas');
   }
 
   public function tipocitas()

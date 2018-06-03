@@ -1,19 +1,42 @@
 @extends('principal')
 @section('content')
-<div class="container">
+  <div class="container">
+    <div class="card mx-auto">
+      <div class="card">
+        <div class="card-header"><h3>Tipo de Cita</h3> </div>
 
+        <div class="card-body">
   <form action="{{ action('TipoCitaController@saveTipoCita') }}" method="post">
     {{ csrf_field() }}
-    <label for="nombre">Tipo de cita : </label>
-    <input type="text" name="nombre" value="<?php if(isset($tipocita)) echo $tipocita->nombre;?>"><br>
-    <label for="descripcion">Descripción: </label><br>
-    <textarea name="descripcion" rows="8" cols="80" value=""><?php if(isset($tipocita)) echo $tipocita->descripcion;?></textarea> <br><br>
-    <label for="color">Color: </label>
-    <input type="color" name="color" value="<?php if(isset($tipocita)) echo $tipocita->color;?>"><br>
+    <div class="row">
+        <div class="col-md-12"><h4>Datos del Tipo</h4></div>
+        <div class="form-group col-md-6">
+          <label for="nombre">Tipo de cita : </label>
+          <input type="text" class="form-control" name="nombre" value="<?php if(isset($tipocita)) echo $tipocita->nombre;?>" required><br>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="color">Color: </label>
+          <input type="text" class="form-control" name="color" id="color" value="<?php if(isset($tipocita)) echo $tipocita->color;?>" required>
+        </div>
+
+        <div class="form-group col-md-12">
+          <label for="descripcion">Descripción: </label><br>
+          <textarea name="descripcion" class="form-control" rows="8" cols="80" value="" required><?php if(isset($tipocita)) echo $tipocita->descripcion;?></textarea>
+        </div>
+
     <input type="hidden" name="id" value="<?php if(isset($tipocita)) echo $tipocita->id;?>">
 
-    <input type="submit"  value="Guardar">
+    <div class="col-md-12"><input type="submit"  class="btn btn-primary" value="Guardar"></div>
   </form>
-  <a href="{{url('/admin/tipocitas')}}">Lista de tipos de citas</a>
+
 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    $ ( '#color' ). colorpicker ({});
+</script>
 @stop
