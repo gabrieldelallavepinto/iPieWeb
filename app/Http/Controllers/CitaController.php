@@ -51,7 +51,6 @@ class CitaController extends Controller
     $request['tiposCita'] = (int)$request['tiposCita'];
     $request['fecha'] = date('Y-m-d H:i:s',strtotime($request['fecha'].' '.$request['hora']));
 
-
     $cliente = Cliente::find($request['idCliente']);
     if($cliente){
       $cliente->update($request->all());
@@ -63,6 +62,7 @@ class CitaController extends Controller
       if($validator->fails()){
          return view('citas.create', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita, 'podologos' => $podologos])->withErrors($validator);
       }
+
       $cliente = Cliente::create($request->all());
       $request['idCliente']=$cliente->id;
       Cita::create($request->all());
@@ -72,7 +72,6 @@ class CitaController extends Controller
 
 
   }
-
 
   public function show($id)
   {
