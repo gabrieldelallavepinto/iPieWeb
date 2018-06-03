@@ -12,8 +12,7 @@
         </div>
     </div>
 </div>
-@section('validation')
-    {!!Html::script('js/validation.js')!!}
-@endsection
+<script type="text/javascript" src="js/validation.js"></script>
+
 
 @stop
