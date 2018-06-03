@@ -10,8 +10,9 @@ $('#form').click(function (data) {
         },
 
         error: function(data) {
-            var errors = data.parseJSON;
-            console.log(errors);
+            $('#data').html(data.responseJSON.tlfnFijo);
+            $('#data').html(data.responseJSON.tlfnMovil);
+            $('#data-error').fadeIn();
         }
     })
 });
