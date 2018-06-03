@@ -44,7 +44,7 @@ Route::group(['middleware' => 'auth:web'], function () {
 
     Route::get ('/admin/formUser/{id}', 'UserController@formUserId');
     Route::get ('/admin/formUser', 'UserController@formUser');
-    Route::post('/admin/saveUser', 'UserController@saveUser');
+    Route::post('/admin/saveUser', 'UserController@save');
     Route::get('/admin/showUser/{id}', 'UserController@showUser');
     Route::get ('/admin/users', 'UserController@users');
     Route::get('/admin/deleteUser/{id}', 'UserController@deleteUser');
@@ -55,6 +55,12 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::get('/admin/showClinica/{id}', 'ClinicaController@showClinica');
     Route::get ('/admin/clinicas', 'ClinicaController@clinicas');
     Route::get('/admin/deleteClinica/{id}', 'ClinicaController@deleteClinica');
+
+    Route::get ('/admin/formTipoCita/{id}', 'TipoCitaController@formTipoCitaId');
+    Route::get ('/admin/formTipoCita', 'TipoCitaController@formTipoCita');
+    Route::post('/admin/saveTipoCita', 'TipoCitaController@saveTipoCita');
+    Route::get ('/admin/tipocitas', 'TipoCitaController@tipocitas');
+    Route::get('/admin/deleteTipoCita/{id}', 'TipoCitaController@deleteTipoCita');
 
     Route::get ('/formNota/{id}', 'NotaController@formNotaId');
     Route::get ('/formNota', 'NotaController@formNota');
@@ -72,7 +78,8 @@ Route::group(['middleware' => 'auth:web'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    $this->get('register', 'Auth\LoginController@showRegisterForm')->name('register');
+    $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    $this->post('register', 'Auth\RegisterController@register');
 
 });
 

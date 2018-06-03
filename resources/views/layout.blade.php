@@ -40,15 +40,21 @@
 
           <ul class="collapse" id="administracion" style="padding:10px;">
             <div class="nav-item">
-              <a class="nav-link" href="admin/users">
+              <a class="nav-link" href="{{url('admin/users')}}">
                 <i class="far fa-calendar-alt"></i>
                 Usuarios
               </a>
             </div>
             <div class="nav-item">
-                <a class="nav-link" href="{{ route('calendario') }}">
+                <a class="nav-link" href="{{url('admin/clinicas')}}">
                   <i class="far fa-calendar-alt"></i>
                   Clinicas
+                </a>
+              </div>
+            <div class="nav-item">
+                <a class="nav-link" href="{{url('admin/tipocitas')}}">
+                  <i class="far fa-calendar-alt"></i>
+                  Tipo de Citas
                 </a>
               </div>
           </ul>

@@ -9,24 +9,29 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-        
+
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        
-        
+
+
         <link rel="stylesheet" href="{{asset('datePicker/css/bootstrap-datepicker3.css')}}">
         <link rel="stylesheet" href="{{asset('datePicker/css/bootstrap-datepicker3.standalone.css')}}">
         <script src="{{ asset('js/jquery.js') }}"></script>
         {{-- <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js"></script> --}}
-        
+
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{asset('datePicker/js/bootstrap-datepicker.js')}}"></script>
         <!-- Languaje -->
         <script src="{{asset('datePicker/locales/bootstrap-datepicker.es.min.js')}}"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
 
+        <!-- script colorpicker -->
+        <link href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/css/bootstrap-colorpicker.min.css" rel = "stylesheet" >
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js" > </script>
+
+
     </head>
     <body>
-        
+
         {{-- si está logueado --}}
         @if(!session('status'))
             @include('layout')
@@ -36,12 +41,12 @@
             </div>
 
         @else
-            
+
             @yield('content')
-        
+
         @endif
 
         @yield('script')
-        
+
     </body>
 </html>

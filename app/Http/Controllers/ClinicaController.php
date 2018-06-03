@@ -59,7 +59,7 @@ class ClinicaController extends Controller
     else {
         $clinica = $this->store($request);
     }
-    return redirect('/admin/showClinica/'.$clinica->id);
+    return redirect('/admin/clinicas');
   }
 
   public function clinicas()

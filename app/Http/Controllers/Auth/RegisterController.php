@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/users';
 
     /**
      * Create a new controller instance.
@@ -84,15 +84,12 @@ class RegisterController extends Controller
       return $this->registered($request, $user);
     }
 
-    public function register($value='')
-    {
 
-    }
 
     public function showRegistrationForm($value='')
     {
-        $tipoUsuarios = 
-        return view('auth.register');
+        $tipoUsuarios = TipoUsuario::all();
+        return view('auth.register', ['tipoUsuarios' => $tipoUsuarios]);
     }
 
 

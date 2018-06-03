@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use Session;
+use App\TipoUsuario;
 
 class UserController extends Controller
 {
@@ -26,13 +27,16 @@ class UserController extends Controller
           'name' => $request['name'],
           'email' => $request['email'],
           'password' => Hash::make($request['password']),
+          'tipo' => $request['tipo']
       ]);
     }
 
     public function update(Request $request, $id)
     {
       $user = User::find($id);
-      $request['password'] =  Hash::make($request['password']);
+      if($request['password'] != $user->password){
+        $request['password'] =  Hash::make($request['password']);
+      }
       $user->update($request->all());
       return $user;
     }
@@ -44,12 +48,28 @@ class UserController extends Controller
       return 204;
     }
 
+    public function save(Request $request)
+    {
+      $user = User::find($request['id']);
+      if($user){
+          $user = $this->update($request, $user->id);
+      }else{
+          $user = $this->store($request);
+      }
+      return redirect('/admin/users');
+
+    }
+
     public function formUser(){
-      return view('admin.formUser', ['api_token' => Session::get('api_token')]);
+      $tipoUsuarios = TipoUsuario::all();
+      $user = new User;
+      return view('auth.register', ['tipoUsuarios' => $tipoUsuarios, 'user' => $user ]);
     }
     public function formUserId($id)
     {
-      return view('admin.formUser', ['api_token' => Session::get('api_token'), 'user' => $this->show($id)]);
+      $tipoUsuarios = TipoUsuario::all();
+      $user = User::find($id);
+      return view('auth.register', ['tipoUsuarios' => $tipoUsuarios, 'user' => $user ]);
     }
 
     public function showUser($id)
