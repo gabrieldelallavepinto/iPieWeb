@@ -24,25 +24,25 @@
         </div>
         <div class="form-group col-md-6">
             <label for="nombre">Nombre</label>
-            <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre" value="{{ $cliente->nombre }}">
+            <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre" value="{{ $cliente->nombre }}" required>
         </div>
         <div class="form-group col-md-6">
             <label for="apellidos">Apellidos</label>
-            <input class="form-control" id="apellidos" name="apellidos" type="text" placeholder="Apellidos" value="{{ $cliente->apellidos }}">
+            <input class="form-control" id="apellidos" name="apellidos" type="text" placeholder="Apellidos" value="{{ $cliente->apellidos }}" required>
         </div>
         <div class="form-group col-md-6">
             <label for="tlfnFijo">Teléfono fijo</label>
-            <input class="form-control" id="tlfnFijo" name="tlfnFijo" type="text" placeholder="Teléfono fijo" value="{{ $cliente->tlfnFijo }}">
+            <input class="form-control" id="tlfnFijo" name="tlfnFijo" type="text" placeholder="Teléfono fijo" value="{{ $cliente->tlfnFijo }}" required>
         </div>
         <div class="form-group col-md-6">
             <label for="tlfnMovil">Teléfono movil</label>
-            <input class="form-control" id="tlfnMovil" name="tlfnMovil" type="text" placeholder="Teléfono movil" value="{{ $cliente->tlfnMovil }}">
+            <input class="form-control" id="tlfnMovil" name="tlfnMovil" type="text" placeholder="Teléfono movil" value="{{ $cliente->tlfnMovil }}" required>
         </div>
 
         <div class="col-md-12"><h4>Datos de la cita</h4></div>
         <div class="form-group col-md-6">
             <label for="idClinica">Clínica</label>
-            <select class="form-control" id="idClinica" name="idClinica">
+            <select class="form-control" id="idClinica" name="idClinica" required>
                 <option>Seleccionar clínica</option>
                 @foreach($clinicas as $clinica)
                   @if ($clinica->id == $cita->idClinica)
@@ -60,7 +60,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="idTipo">Tipo de consulta</label>
-            <select class="form-control" id="idTipo" name="idTipo">
+            <select class="form-control" id="idTipo" name="idTipo" required>
                 <option>Seleccionar tipo de cita</option>
                 @foreach($tiposCita as $tipoCita)
 
@@ -75,15 +75,15 @@
         </div>
         <div class="form-group col-md-6">
             <label for="fecha">Fecha</label>
-            <input class="form-control" id="fecha" name="fecha" data-provide="datepicker" value="{{ $fechaCita }}">
+            <input class="form-control" id="fecha" name="fecha" data-provide="datepicker" value="{{ $fechaCita }}" required>
         </div>
         <div class="form-group col-md-6">
             <label for="hora">Hora</label>
-            <input class="form-control" type="time" id="hora" name="hora" value="{{ $horaCita }}">
+            <input class="form-control" type="time" id="hora" name="hora" value="{{ $horaCita }}" required>
         </div>
         <div class="form-group col-md-6">
             <label for="idPodologo">Podolog@</label>
-            <select class="form-control" id="idPodologo" name="idPodologo">
+            <select class="form-control" id="idPodologo" name="idPodologo" required>
                 <option>Seleccionar podolog@</option>
                 @foreach($podologos as $podologo)
                     @if ($podologo->id == $cita->idPodologo)
@@ -103,7 +103,7 @@
         </div>
         <div class="form-group col-md-12">
             <label for="notas">Notas</label>
-            <textarea class="form-control" rows="4" id="notas" name="notas" type="text" placeholder="Escribe las notas que necesites">{{ $cita->notas }}</textarea>
+            <textarea class="form-control" rows="4" id="notas" name="notas" type="text" placeholder="Escribe las notas que necesites" required>{{ $cita->notas }}</textarea>
         </div>
             <div class="col-md-12"><button type="submit" class="btn btn-primary">Guardar</button></div>
     </div>
