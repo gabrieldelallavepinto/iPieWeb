@@ -136,11 +136,12 @@ class AnuncioController extends Controller
   {
 
 
-    if ($request['id'] != "") {
-        $nota = $this->update($request,$request['id']);
+    if (empty($request['id'])) {
+
+        $nota = $this->store($request);
     }
     else {
-        $nota = $this->store($request);
+        $nota = $this->update($request,$request['id']);
     }
     return redirect('/anuncios');
   }

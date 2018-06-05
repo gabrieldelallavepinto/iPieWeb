@@ -3,7 +3,7 @@
 
 ?>
 
-<form action="{{ action('AnuncioController@saveAnuncio') }}" method="post">
+<form enctype="multipart/form-data" action="{{ action('AnuncioController@saveAnuncio') }}" method="post">
     {{ csrf_field() }}
 
     <div class="row">
