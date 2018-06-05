@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotasTable extends Migration
+class CreateTableAnuncios extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +18,7 @@ class CreateNotasTable extends Migration
           $table->integer('idUsuario')->unsigned();
           $table->string('titulo');
           $table->text('descripcion');
-          $table->dateTime('fecha');
+          $table->dateTime('fecha')->nullable($value = true);
           $table->string('imagen');
           $table->string('pdf');
           $table->timestamps();
@@ -36,6 +36,6 @@ class CreateNotasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notas');
+        Schema::dropIfExists('anuncios');
     }
 }
