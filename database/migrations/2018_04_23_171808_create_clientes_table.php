@@ -17,8 +17,8 @@ class CreateClientesTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('apellidos');
-            $table->string('tlfnFijo');
-            $table->string('tlfnMovil');
+            $table->string('tlfnFijo')->nullable($value = true);
+            $table->string('tlfnMovil')->nullable($value = true);
             $table->timestamps();
         });
     }
