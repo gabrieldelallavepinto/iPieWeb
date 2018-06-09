@@ -10,6 +10,8 @@
         $fechaCita = date('d-m-Y');
         $horaCita = date('h:i');
     }
+
+    $user = Auth::user();
 ?>
 
 <form action="{{ action('CitaController@store') }}" method="post">
@@ -105,10 +107,24 @@
             <label for="notas">Notas</label>
             <textarea class="form-control" rows="4" id="notas" name="notas" type="text" placeholder="Escribe las notas que necesites" required>{{ $cita->notas }}</textarea>
         </div>
+        
+        {{--  solo para admin  --}}
+        @if(isset($user->tipo) && $user->tipo == 1)
             <div class="col-md-12"><button type="submit" class="btn btn-primary">Guardar</button></div>
+        @endif
     </div>
 
 </form>
+
+    @if(isset($user->tipo) && $user->tipo != 1)
+        <script>
+            $("input").prop('disabled', true);
+            $("option").attr('disabled','disabled');
+            $("option").attr('disabled','disabled');
+            $(".form-group").attr('disabled','disabled');
+            $("textarea").attr('disabled','disabled');
+        </script>
+    @endif
 
     <script>
         $('#fecha').datepicker({
