@@ -1,0 +1,158 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Route;
+use App\Cita;
+use App\TipoCita;
+use App\Cliente;
+use App\Clinica;
+use App\User;
+
+use Validator, Input, Redirect;
+
+class CitaController extends Controller
+{
+  public function index()
+  {
+    return Cita::all();
+  }
+
+  public function create()
+  {
+    $clinicas = Clinica::all();
+    $tiposCita = TipoCita::select('id','nombre','color')->get();
+    $podologos = User::all();
+    $cita = new Cita;
+    $cliente = new Cliente;
+    return view('citas.create', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita, 'podologos' => $podologos]);
+  }
+
+  public function edit(Request $request)
+  {
+    $idCita = $request['idCita'];
+    $podologos = User::all();
+    $tiposCita = TipoCita::select('id','nombre','color')->get();
+    $cita = Cita::find($idCita);
+    $clinicas = Clinica::all();
+    $cliente = Cliente::find($cita->idCliente);
+    return view('citas.edit', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita,  'podologos' => $podologos]);
+  }
+
+
+  public function store(Request $request)
+  {
+    $clinicas = Clinica::all();
+    $tiposCita = TipoCita::select('id','nombre','color')->get();
+    $podologos = User::all();
+    $cita = new Cita;
+
+    $request['tiposCita'] = (int)$request['tiposCita'];
+    $request['fecha'] = date('Y-m-d H:i:s',strtotime($request['fecha'].' '.$request['hora']));
+
+
+    $cliente = Cliente::find($request['idCliente']);
+    if($cliente){
+      $cliente->update($request->all());
+      $cita = Cita::find($request['idCita']);
+      $cita->update($request->all());
+    }else{
+      //$cliente = new Cliente;
+      //$validator = Validator::make($request->all(),$cita->rules);
+      //if($validator->fails()){
+      //   return view('citas.create', ['clinicas' => $clinicas, 'cita' => $cita, 'cliente' => $cliente, 'tiposCita' => $tiposCita, 'podologos' => $podologos])->withErrors($validator);
+      //}
+      $cliente = Cliente::create($request->all());
+      $request['idCliente']=$cliente->id;
+      Cita::create($request->all());
+    }
+
+    return redirect()->route('calendario');
+
+
+  }
+
+
+  public function show($id)
+  {
+    return Cita::find($id);
+  }
+
+
+  public function update(Request $request, $id)
+  {
+    $user = Cita::find($id);
+    $user->update($request->all());
+    return $user;
+  }
+
+  public function delete(Request $request, $id)
+  {
+    $article = Cita::find($id);
+    $article->delete();
+    return 204;
+  }
+
+  public function showByDateClinica($clinica, $date){
+    return Cita::whereDate('fecha', $date)->where('idClinica','=',$clinica)->get();
+  }
+
+  public function showByDatePodologo($podologo, $date){
+    return Cita::whereDate('fecha', $date)->where('idPodologo','=',$podologo)->get();
+  }
+
+  public function showByDatePodologoClinica($podologo, $clinica, $date){
+    return Cita::whereDate('fecha', $date)->where('idClinica','=',$clinica)->where('idPodologo','=', $podologo)->get();
+  }
+
+  public function formCita(){
+    return view('citas.form', ['fecha' => date("Y-m-d"), 'tiposCita' => TipoCita::all()]);
+  }
+  public function formCitaId($id)
+  {
+    $cita = $this->show($id);
+    return view('citas.form', [ 'cita' => $cita, 'fecha' => date("Y-m-d"), 'cliente' => Cliente::find($cita->idUsuario), 'tiposCita' => TipoCita::all()]);
+  }
+
+  public function showCita($id)
+  {
+    $cita = $this->show($id);
+    return view('citas.showCita',['cita' => $cita, 'cliente' => Cliente::find($cita->idUsuario) ]);
+  }
+
+  public function saveCita(Request $request)
+  {
+    $cliente = [];
+    $cita = [
+              "id" => $request['id'],
+              "idCliente" => $request['id'],
+              "idTipo" => $request['tiposCita'],
+              "idClinica" => $request['idClinica'],
+              "fecha" => $request['fecha'],
+              "notas" => $request['notas']
+            ];
+
+    if ($request['id'] != "") {
+        $nota = $this->update($request,$request['id']);
+    }
+    else {
+        $nota = $this->store($request);
+    }
+    return redirect('/showCita/'.$nota->id);
+  }
+
+  public function citas($date)
+  {
+    //$citas = $this->showByDate($date);
+    //return view('citas.listNotas',['citas' => $citas, 'fecha' => $date]);
+  }
+
+  public function deleteNota($id)
+  {
+    $article = Cita::find($id);
+    $article->delete();
+    return redirect('/citas/'.date("Y-m-d"));
+  }
+
+}

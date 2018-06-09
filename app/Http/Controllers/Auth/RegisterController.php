@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/users';
 
     /**
      * Create a new controller instance.
@@ -50,8 +52,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'email' => 'required|string|max:255',
+            'password' => 'required|string|min:6',
         ]);
     }
 
@@ -69,4 +71,26 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+    protected function registered(Request $request, $user)
+    {
+      $user->generateToken();
+      return $user;
+    }
+
+    public function registerapi(Request $request)
+    {
+      $this->validator($request->all())->validate();
+      event(new Registered($user = $this->create($request->all())));
+      return $this->registered($request, $user);
+    }
+
+
+
+    public function showRegistrationForm($value='')
+    {
+        $tipoUsuarios = TipoUsuario::all();
+        return view('auth.register', ['tipoUsuarios' => $tipoUsuarios]);
+    }
+
+
 }
