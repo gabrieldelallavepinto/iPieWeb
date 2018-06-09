@@ -37,9 +37,9 @@ Route::group(['middleware' => 'auth:web'], function () {
 
     //anuncios
     Route::get('/anuncios', 'AnuncioController@index')->name('anuncios');
-    Route::get('/anuncios/edit', 'AnuncioController@edit');
-    Route::get('/anuncios/create', 'AnuncioController@create');
-    Route::post('/anuncios', 'AnuncioController@saveAnuncio');
+    Route::get('/anuncios/edit', 'AnuncioController@edit')->name('anuncios.edit');
+    Route::get('/anuncios/create', 'AnuncioController@create')->name('anuncios.create');
+    Route::post('/anuncios', 'AnuncioController@saveAnuncio')->name('anuncios.store');
 
 
     Route::get ('/admin/formUser/{id}', 'UserController@formUserId');

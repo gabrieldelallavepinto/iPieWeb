@@ -1,6 +1,6 @@
 
 <?php
-
+$user = Auth::user();
 ?>
 
 <form enctype="multipart/form-data" action="{{ action('AnuncioController@saveAnuncio') }}" method="post">

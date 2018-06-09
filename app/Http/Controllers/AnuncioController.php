@@ -12,32 +12,10 @@ class AnuncioController extends Controller
   public function index()
   {
     // $anuncios = Anuncio::all();
-    $anuncios = array(
-      '0' => array(
-        'idUsuario' => 1,
-        'descripcion' => 'Affert brevi generibusque gaudemus saluti, auctori memoria flagitem odioque notionem sapientium meminerunt disserui conferebamus veriusque sponte praeterita primis maximam conetur stabilitas nulla cupiditates vituperata dicant declarant, debemus leniat dis',
-        'titulo' => 'Anuncio 1',
-      ),
-      '1' => array(
-        'idUsuario' => 2,
-        'descripcion' => 'Impensa praeceptrice fames veniat quantus libro deteriora, parta sapienti corpus suapte reque tum maiorem mirari electis dubio voluptas futurove minimum.',
-        'titulo' => 'Anuncio 2',
-      ),
-      '2' => array(
-        'idUsuario' => 2,
-        'descripcion' => 'Impensa praeceptrice fames veniat quantus libro deteriora, parta sapienti corpus suapte reque tum maiorem mirari electis dubio voluptas futurove minimum.',
-        'titulo' => 'Anuncio 3',
-      ),
-      '3' => array(
-        'idUsuario' => 2,
-        'descripcion' => 'Impensa praeceptrice fames veniat quantus libro deteriora, parta sapienti corpus suapte reque tum maiorem mirari electis dubio voluptas futurove minimum.',
-        'titulo' => 'Anuncio 3',
-      ),
-    );
+    $anuncios = Anuncio::orderby('fecha','desc')->get();
     return view('anuncios.index', ['anuncios' => $anuncios]);
-
-
   }
+  
 
   public function show($id)
   {
