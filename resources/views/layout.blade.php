@@ -19,15 +19,6 @@ $user = Auth::user();
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="menuIzquierda">
 
-          <li class="nav-item">
-              <a class="nav-link" href="#">
-                  <i class="far fa-address-card"></i>
-
-
-                bienvenido {{ $user->name }}
-              </a>
-            </li>
-        
         <li class="nav-item">
           <a class="nav-link" href="{{ route('calendario') }}">
             <i class="far fa-calendar-alt"></i>
@@ -42,50 +33,55 @@ $user = Auth::user();
           </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="collapse" href="#administracion">
-            <i class="far fa-calendar-alt"></i>
-            Administrador
-            <i class="fas fa-angle-down"></i>
-          </a>
+        {{--  solo para administradores  --}}
+        @if(isset($user->tipo) && $user->tipo == 1)
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#administracion">
+              <i class="far fa-calendar-alt"></i>
+              Administrador
+              <i class="fas fa-angle-down"></i>
+            </a>
 
-          <ul class="collapse" id="administracion" style="padding:10px;">
-            <div class="nav-item">
-              <a class="nav-link" href="{{url('admin/users')}}">
-                <i class="far fa-calendar-alt"></i>
-                Usuarios
-              </a>
-            </div>
-            <div class="nav-item">
-                <a class="nav-link" href="{{url('admin/clinicas')}}">
+            <ul class="collapse" id="administracion" style="padding:10px;">
+              <div class="nav-item">
+                <a class="nav-link" href="{{url('admin/users')}}">
                   <i class="far fa-calendar-alt"></i>
-                  Clinicas
+                  Usuarios
                 </a>
               </div>
-            <div class="nav-item">
-                <a class="nav-link" href="{{url('admin/tipocitas')}}">
-                  <i class="far fa-calendar-alt"></i>
-                  Tipo de Citas
-                </a>
-              </div>
-          </ul>
+              <div class="nav-item">
+                  <a class="nav-link" href="{{url('admin/clinicas')}}">
+                    <i class="far fa-calendar-alt"></i>
+                    Clinicas
+                  </a>
+                </div>
+              <div class="nav-item">
+                  <a class="nav-link" href="{{url('admin/tipocitas')}}">
+                    <i class="far fa-calendar-alt"></i>
+                    Tipo de Citas
+                  </a>
+                </div>
+            </ul>
 
-        </li>
-
+          </li>
+        @endif
       </ul>
 
       <ul class="navbar-nav ml-auto">
         {{-- Mostrar Usuario --}}
-        {{--
-        <li class="nav-item">
-          @if (isset(Auth::user()->name))
-             Mostrar el nombre de usuario para el login
-            {{ Auth::user()->name}}
+        @if(isset($user->name))
 
-          @endif
+          <li class="nav-item">
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)">
+                <i class="far fa-address-card"></i>
+                {{ $user->name }}
+              </a>
+            </li>
+          </li>
 
-        </li>
-        --}}
+        @endif
+
         {{-- cerrar sesión --}}
         <li class="nav-item">
           <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -98,6 +94,7 @@ $user = Auth::user();
               @csrf
           </form>
         </li>
+
       </ul>
 
 
