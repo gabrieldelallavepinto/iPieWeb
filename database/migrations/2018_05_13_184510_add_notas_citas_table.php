@@ -14,7 +14,7 @@ class AddNotasCitasTable extends Migration
     public function up()
     {
       Schema::table('citas', function (Blueprint $table) {
-          $table->string('notas');
+          $table->string('notas')->nullable($value = true);
       });
     }
 

@@ -45,7 +45,7 @@
         <div class="form-group col-md-6">
             <label for="idClinica">Clínica</label>
             <select class="form-control" id="idClinica" name="idClinica" required>
-                <option>Seleccionar clínica</option>
+
                 @foreach($clinicas as $clinica)
                   @if ($clinica->id == $cita->idClinica)
                     <option value="{{ $clinica->id }}" selected>{{ $clinica->provincia }}, {{ $clinica->ciudad }}</option>
@@ -63,7 +63,7 @@
         <div class="form-group col-md-6">
             <label for="idTipo">Tipo de consulta</label>
             <select class="form-control" id="idTipo" name="idTipo" required>
-                <option>Seleccionar tipo de cita</option>
+
                 @foreach($tiposCita as $tipoCita)
 
                   @if ($tipoCita->id == $cita->idTipo)
@@ -86,7 +86,7 @@
         <div class="form-group col-md-6">
             <label for="idPodologo">Podolog@</label>
             <select class="form-control" id="idPodologo" name="idPodologo" required>
-                <option>Seleccionar podolog@</option>
+              
                 @foreach($podologos as $podologo)
                     @if ($podologo->id == $cita->idPodologo)
                       <option value="{{ $podologo->id }}" selected>{{ $podologo->name }}</option>
@@ -107,7 +107,7 @@
             <label for="notas">Notas</label>
             <textarea class="form-control" rows="4" id="notas" name="notas" type="text" placeholder="Escribe las notas que necesites">{{ $cita->notas }}</textarea>
         </div>
-        
+
         {{--  solo para admin  --}}
         @if(isset($user->tipo) && $user->tipo == 1)
             <div class="col-md-12"><button type="submit" class="btn btn-primary">Guardar</button></div>
@@ -132,5 +132,5 @@
             format: 'dd-mm-yyyy',
         });
 
-       
+
     </script>
