@@ -32,11 +32,11 @@
         </div>
         <div class="form-group col-md-6">
             <label for="tlfnFijo">Teléfono fijo</label>
-            <input class="form-control" id="tlfnFijo" name="tlfnFijo" type="text" placeholder="Teléfono fijo" value="{{ $cliente->tlfnFijo }}" required>
+            <input class="form-control" id="tlfnFijo" name="tlfnFijo" type="text" placeholder="Teléfono fijo" value="{{ $cliente->tlfnFijo }}" >
         </div>
         <div class="form-group col-md-6">
             <label for="tlfnMovil">Teléfono movil</label>
-            <input class="form-control" id="tlfnMovil" name="tlfnMovil" type="text" placeholder="Teléfono movil" value="{{ $cliente->tlfnMovil }}" required>
+            <input class="form-control" id="tlfnMovil" name="tlfnMovil" type="text" placeholder="Teléfono movil" value="{{ $cliente->tlfnMovil }}" >
         </div>
 
         <div class="col-md-12"><h4>Datos de la cita</h4></div>
