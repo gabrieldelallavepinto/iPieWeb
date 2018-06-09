@@ -28,8 +28,9 @@ class CalendarioController extends Controller
         //fecha + 1 dia
         $fechaFin = date('Y-m-d H:i:s', strtotime($fecha . ' +1 day'));
 
+        $citas = Cita::select('*');
         //obtenemos todas las citas de la clinica y del dia ordenadas por fecha
-        $citas = Cita::where('fecha','>=',$fechaInicio)->where('fecha','<',$fechaFin);
+        $citas = $citas->where('fecha','>=',$fechaInicio)->where('fecha','<',$fechaFin);
 
         //obtenemos la clinica
         $datos['clinica']='';
