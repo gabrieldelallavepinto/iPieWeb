@@ -132,19 +132,5 @@
             format: 'dd-mm-yyyy',
         });
 
-        $.ajax({
-
-            url: 'cita/create',
-            type: 'get',
-            data: $data,
-            success: function(data){
-                alert(data);
-
-            }
-            error: function(jqXHR, textStatus, errorThrown)
-            {
-                alert(errorThrown);
-            }
-            e.preventDefault();
-    });
+       
     </script>
