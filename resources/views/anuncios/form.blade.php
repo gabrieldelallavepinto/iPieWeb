@@ -42,11 +42,21 @@
             <input class="form-control" id="pdf" name="pdf" type="file" placeholder="Seleciona pdf" value="{{ $anuncio->pdf }}" >
         </div>
 
-
-        <div class="col-md-12"><button type="submit" class="btn btn-primary">Guardar</button></div>
+        @if(isset($user->tipo) && $user->tipo == 1)
+            <div class="col-md-12"><button type="submit" class="btn btn-primary">Guardar</button></div>
+        @endif
     </div>
 
 </form>
+    @if(isset($user->tipo) && $user->tipo != 1)
+        <script>
+            $("input").prop('disabled', true);
+            $("option").attr('disabled','disabled');
+            $("option").attr('disabled','disabled');
+            $(".form-group").attr('disabled','disabled');
+            $("textarea").attr('disabled','disabled');
+        </script>
+    @endif
 
     <script>
         $('#fecha').datepicker({
