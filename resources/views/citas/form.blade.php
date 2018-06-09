@@ -105,7 +105,7 @@
         </div>
         <div class="form-group col-md-12">
             <label for="notas">Notas</label>
-            <textarea class="form-control" rows="4" id="notas" name="notas" type="text" placeholder="Escribe las notas que necesites" required>{{ $cita->notas }}</textarea>
+            <textarea class="form-control" rows="4" id="notas" name="notas" type="text" placeholder="Escribe las notas que necesites">{{ $cita->notas }}</textarea>
         </div>
         
         {{--  solo para admin  --}}
