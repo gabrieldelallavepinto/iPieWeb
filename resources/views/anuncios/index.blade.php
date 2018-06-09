@@ -9,19 +9,28 @@
                 <div class="card-body">
                     <div class="row">
                         @foreach($anuncios as $anuncio)
-                    
+
                             <div class="col-md-4 mt-3">
                                 <div class="anuncio card" id={{ $anuncio['id'] }} style="height: 100%;">
-                                    <img class="card-img-top" src="{{ asset('images/noticia.png') }}" alt="Card image cap">
-                                    
-                                    <div class="card-body"> 
+                                    @php
+                                      $Aimagen = explode("/", $anuncio['imagen']);
+                                    @endphp
+                                    <img class="card-img-top" src="{{ asset("storage/".$Aimagen[1]) }}" alt="Card image cap">
+
+                                    <div class="card-body">
                                         <h4 class="card-title">{{ $anuncio['titulo'] }}</h4>
                                         <h5 class="card-title">{{ Date('d-m-Y',strtotime($anuncio['fecha'])) }}</h5>
                                         <p class="card-text">{{ $anuncio['descripcion'] }}</p>
+                                        @if ($anuncio['pdf'] != "")
+                                          @php
+                                            $Apdf = explode("/", $anuncio['pdf']);
+                                          @endphp
+                                          <a href="{{ asset("storage/".$Apdf[1]) }}">Descargar [PDF]</a>;
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-                
+
                         @endforeach
                     </div>
                 </div>
@@ -40,7 +49,7 @@
         $idAnuncio = $(this).attr("id");
 
         $datos = '?idAnuncio='+$idAnuncio;
-        
+
         window.location.href = "{{ route('anuncios.edit') }}"+$datos;
     });
 </script>
